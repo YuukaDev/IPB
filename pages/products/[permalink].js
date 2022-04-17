@@ -32,6 +32,9 @@ export default function ProductPage({ product }) {
     const addToCartHandler = (e) => {
         commerce.cart.add(product, 3).then((response) => console.log(response));
     }
+    const removeCartHandler = () => {
+        commerce.cart.remove(product).then((response) => console.log(response));
+    }
     return (
         <div>
             <Box>
