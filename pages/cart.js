@@ -1,30 +1,17 @@
-import { Box } from "@chakra-ui/react";
 import commerce from "../lib/commerce";
 
-export async function getStaticProps() {
-    const products = await commerce.cart.contents();
-    const data = JSON.stringify(products);
-    return {
-        props: {
-            data,
-        }
-    }
-}
-
-export default function Cart({ data }) {
-    const sendData = () => {
-        commerce.cart.contents().then((response) => console.log(response));
-    }
+export default function CartPage() {
+    const cartId = "cart_nPEVlN1Qn05a7d";
+    const cartItems = commerce.cart.retrieve(cartId);
     return (
-        <Box>
-            <button onClick={sendData}>Click Me</button>
-            {data.map((product) => (
+        <div>
+            {cartItems.line_total.map(stapricas => (
                 <div>
-                    <h1>{product.name}</h1>
-                    <img src={product.image.url} />
-                    <p>{product.price.formatted_with_code}</p>
+                    <h1>{stapricas.name}</h1>
+                    <img src={stapricas.image.url} />
+                    <p>{stapricas.line_total_formatted}</p>
                 </div>
             ))}
-        </Box>
+        </div >
     )
 }
