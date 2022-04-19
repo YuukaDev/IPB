@@ -1,0 +1,28 @@
+.header-product parallax {
+  align-items: center;
+  background-image: url(https://s3.gaming-cdn.com/img/products/6011/pcover/6011.jpg);
+  background-position-x: 50%;
+  background-position-y: 50%;
+  background-size: cover;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  display: none;
+  font-family: proximanova, arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  height: auto;
+  justify-content: center;
+  margin-bottom: 0px;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: 85px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 220px;
+  position: relative;
+  width: auto;
+}

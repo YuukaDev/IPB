@@ -1,5 +1,7 @@
+import "../styles/style.css";
 import commerce from "../lib/commerce";
 import ProductContainer from "../components/Products/ProductContainer";
+import Navigation from "../components/Navigation/Navigation";
 
 export async function getStaticProps() {
   const { data: products } = await commerce.products.list();
@@ -12,12 +14,9 @@ export async function getStaticProps() {
 
 
 export default function Home({ products }) {
-  const getProducts = () => {
-    commerce.products.list().then((product) => console.log(product));
-  }
   return (
     <div >
-      <button onClick={getProducts}>Get Products</button>
+      <Navigation />
       <ProductContainer products={products} />
     </div>
   )

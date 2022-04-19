@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+          {line_items.length > 0 ? (
+            <Badge
+              ml="-20px"
+              display="flex"
+              w="12px"
+              h="12px"
+              borderRadius="50%"
+              justifyContent="center"
+              alignItems="center"
+              colorScheme="purple"
+              cursor="auto"
+            >
+              {line_items.length}
+            </Badge>
+          ) : (
+            ""
+          )}
 
-## Getting Started
+          export default function CartItems({ id, name, quantity, line_total }) {
+  const { setCart } = useCartDispatch();
+  const handleUpdateCart = ({ cart }) => setCart(cart);
+  const removeItem = () => commerce.cart.remove(id).then(handleUpdateCart);
 
-First, run the development server:
+  const decrementQuantity = () => {
+    quantity > 1
+      ? commerce.cart
+          .update(id, { quantity: quantity - 1 })
+          .then(handleUpdateCart)
+      : removeItem();
+  };
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+  const incrementQuantity = () => {
+    commerce.cart.update(id, { quantity: quantity + 1 }).then(handleUpdateCart);
+  };
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  return (
+    <Box>
+      <Heading>{name}</Heading>
+      <Text as="samp">{quantity}</Text>
+      <Text>{line_total.formatted_with_symbol}</Text>
+      <Flex gap="20px">
+        <Button onClick={incrementQuantity}>+</Button>
+        <Button onClick={decrementQuantity}>-</Button>
+        <Button onClick={removeItem}>x</Button>
+      </Flex>
+    </Box>
+  );
+}
