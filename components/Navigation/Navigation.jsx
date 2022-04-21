@@ -1,15 +1,25 @@
 import NextLink from "next/link";
-import { Box, Flex, Link, Icon, Image, Badge } from "@chakra-ui/react";
-
+import NextImage from "next/image";
 import {
-  AiOutlineSearch,
-  AiOutlineUser,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
+  Box,
+  Flex,
+  Link,
+  Icon,
+  Image,
+  Badge,
+  useColorMode,
+  Heading,
+} from "@chakra-ui/react";
+
+import ipbLogo from "../../public/ipb-logo.jpg";
+
+import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
 import { useCartState } from "../../utils/StoreContext";
+import DarkMode from "../ThemeChanger/DarkMode";
 
 export default function Navigation() {
   const { line_items } = useCartState();
+  const { colorMode } = useColorMode();
   return (
     <>
       <Box
@@ -19,103 +29,66 @@ export default function Navigation() {
         pos="sticky"
         letterSpacing=".12em"
         fontSize="14px"
-        color="#1b133c"
+        color={colorMode === "light" ? "#1b133c" : "white"}
         textTransform="uppercase"
         fontWeight="500"
-        backgroundColor="#ffffff"
         display="flex"
         alignItems="center"
-        padding="30px 10%"
+        padding="30px 5%"
       >
-        <NextLink href="/">
-          <Image
-            cursor="pointer"
-            src={
-              "https://cdn.shopify.com/s/files/1/0070/1700/5113/files/AtsukoSiteLogo_9f065aae-ad08-42df-9b9d-da9836dde88a_120x.png?v=1613893342"
-            }
-          />
-        </NextLink>
-        <Flex
-          width="85%"
-          justifyContent="center"
-          alignItems="center"
-          gap="20px"
-        >
-          <NextLink href="#" passHref>
-            <Link
-              _hover={{
-                textDecoration: "none",
-              }}
-            >
-              Home
-            </Link>
+        <Flex w="100%" m="0 auto" alignItems="center">
+          <NextLink href="/">
+            <Heading as="h3" fontSize="1.5em">
+              Igrice Prodaja Balkan
+            </Heading>
           </NextLink>
-          <NextLink href="#" passHref>
-            <Link
-              _hover={{
-                textDecoration: "none",
-              }}
-            >
-              Shop All
-            </Link>
-          </NextLink>
-          <NextLink href="#" passHref>
-            <Link
-              _hover={{
-                textDecoration: "none",
-              }}
-            >
-              Clothing
-            </Link>
-          </NextLink>
-          <NextLink href="#" passHref>
-            <Link
-              _hover={{
-                textDecoration: "none",
-              }}
-            >
-              Accessories
-            </Link>
-          </NextLink>
-          <NextLink href="#" passHref>
-            <Link
-              _hover={{
-                textDecoration: "none",
-              }}
-              bg="#f7453f"
-              p="6px"
-              borderRadius="md"
-              color="#fff"
-            >
-              Blog
-            </Link>
-          </NextLink>
-        </Flex>
-        <Flex width="0" gap="15px" fontSize="24px" cursor="pointer">
-          <Icon as={AiOutlineSearch} />
-          <Icon as={AiOutlineUser} />
-          <NextLink href="/cart" passHref>
-            <Link>
+          <Flex
+            width="65%"
+            justifyContent="center"
+            alignItems="center"
+            gap="20px"
+          >
+            <NextLink href="#">Home</NextLink>
+            <NextLink href="#">Shop</NextLink>
+            <NextLink href="#">About</NextLink>
+            <NextLink href="#">
+              <Link
+                _hover={{
+                  textDecoration: "none",
+                }}
+                bg="#f7453f"
+                p="6px"
+                borderRadius="md"
+                color="#fff"
+              >
+                Blog
+              </Link>
+            </NextLink>
+          </Flex>
+          <Flex width="0" gap="15px" fontSize="24px" cursor="pointer">
+            <Icon as={AiOutlineSearch} />
+            <NextLink href="/cart" passHref>
               <Icon as={AiOutlineShoppingCart} />
-            </Link>
-          </NextLink>
-          {JSON.stringify(line_items.length > 0) ? (
-            <Badge
-              ml="-20px"
-              display="flex"
-              w="12px"
-              h="12px"
-              borderRadius="50%"
-              justifyContent="center"
-              alignItems="center"
-              colorScheme="purple"
-              cursor="auto"
-            >
-              {JSON.stringify(line_items.length)}
-            </Badge>
-          ) : (
-            ""
-          )}
+            </NextLink>
+            {JSON.stringify(line_items.length > 0) ? (
+              <Badge
+                ml="-20px"
+                display="flex"
+                w="12px"
+                h="12px"
+                borderRadius="50%"
+                justifyContent="center"
+                alignItems="center"
+                colorScheme="purple"
+                cursor="auto"
+              >
+                {JSON.stringify(line_items.length)}
+              </Badge>
+            ) : (
+              ""
+            )}
+            <DarkMode />
+          </Flex>
         </Flex>
       </Box>
     </>

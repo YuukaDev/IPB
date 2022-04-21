@@ -76,7 +76,7 @@ export const CartItems = ({ id, price, name, quantity, image }) => {
         >
           {price.formatted_with_symbol}
         </Text>
-        <CloseButton onClick={() => removeItem} />
+        <CloseButton onClick={removeItem} />
       </Flex>
     </Flex>
   );

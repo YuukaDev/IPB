@@ -1,4 +1,3 @@
-import "../styles/style.css";
 import commerce from "../lib/commerce";
 import ProductContainer from "../components/Products/ProductContainer";
 import Navigation from "../components/Navigation/Navigation";
@@ -17,7 +16,6 @@ export default function Home({ products }) {
   return (
     <div >
       <Navigation />
-      <ProductContainer products={products} />
     </div>
   )
 }
