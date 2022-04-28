@@ -35,8 +35,10 @@ export default function Navigation() {
       alignItems="center"
       padding="15px 10%"
     >
-      <NextLink href="/">
-        <NextImage width="80" height="55" src={ipbLogo} />
+      <NextLink href="/" >
+        <NextImage style={{
+          cursor: "pointer"
+        }} width="80" height="55" src={ipbLogo} />
       </NextLink>
       <Flex width="90%" justifyContent="center" alignItems="center" gap="30px">
         <NextLink href="#" passHref>
