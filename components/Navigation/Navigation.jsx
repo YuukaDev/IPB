@@ -22,29 +22,39 @@ export default function Navigation() {
   return (
     <Box
       zIndex="1"
+      boxShadow="dark-lg"
       as="nav"
       top="0"
       pos="sticky"
-      letterSpacing=".16em"
-      fontSize="14px"
+      fontSize="1em"
       color="#fff"
-      textTransform="uppercase"
       fontWeight="500"
-      backgroundColor="rgb(16, 16, 16)"
+      backgroundColor="#101010"
       display="flex"
+      width="100%"
+      justifyContent="space-between"
       alignItems="center"
-      padding="15px 10%"
+      padding="13px 10%"
     >
-      <NextLink href="/" >
-        <NextImage style={{
-          cursor: "pointer"
-        }} width="80" height="55" src={ipbLogo} />
+      <NextLink href="/">
+        <NextImage
+          style={{
+            cursor: "pointer",
+          }}
+          width="80"
+          height="55"
+          src={ipbLogo}
+        />
       </NextLink>
-      <Flex width="90%" justifyContent="center" alignItems="center" gap="30px">
+      <Flex gap="30px" color="rgb(255, 255, 255)">
         <NextLink href="#" passHref>
           <Link
+            transition="0.3s all ease"
+            opacity="1"
             _hover={{
+              opacity: "0.5",
               textDecoration: "none",
+              transition: "0.3s all ease",
             }}
           >
             Home
@@ -52,10 +62,12 @@ export default function Navigation() {
         </NextLink>
         <NextLink href="#" passHref>
           <Link
+            transition="0.3s all ease"
             opacity="1"
             _hover={{
               opacity: "0.5",
               textDecoration: "none",
+              transition: "0.3s all ease",
             }}
           >
             Shop All
@@ -63,8 +75,12 @@ export default function Navigation() {
         </NextLink>
         <NextLink href="#" passHref>
           <Link
+            transition="0.3s all ease"
+            opacity="1"
             _hover={{
+              opacity: "0.5",
               textDecoration: "none",
+              transition: "0.3s all ease",
             }}
           >
             Hottest
@@ -72,8 +88,12 @@ export default function Navigation() {
         </NextLink>
         <NextLink href="#" passHref>
           <Link
+            transition="0.3s all ease"
+            opacity="1"
             _hover={{
+              opacity: "0.5",
               textDecoration: "none",
+              transition: "0.3s all ease",
             }}
           >
             About
@@ -81,8 +101,12 @@ export default function Navigation() {
         </NextLink>
         <NextLink href="#" passHref>
           <Link
+            transition="0.3s all ease"
+            opacity="1"
             _hover={{
+              opacity: "0.5",
               textDecoration: "none",
+              transition: "0.3s all ease",
             }}
           >
             Support
@@ -90,8 +114,28 @@ export default function Navigation() {
         </NextLink>
       </Flex>
       <Flex width="0" gap="15px" fontSize="24px" cursor="pointer">
-        <Icon as={AiOutlineSearch} />
-        <Icon as={AiOutlineShoppingCart} />
+        <Icon
+          transition="0.3s all ease"
+          opacity="1"
+          _hover={{
+            opacity: "0.5",
+            textDecoration: "none",
+            transition: "0.3s all ease",
+          }}
+          as={AiOutlineSearch}
+        />
+        <Link href="/cart">
+          <Icon
+            transition="0.3s all ease"
+            opacity="1"
+            _hover={{
+              opacity: "0.5",
+              textDecoration: "none",
+              transition: "0.3s all ease",
+            }}
+            as={AiOutlineShoppingCart}
+          />
+        </Link>
         {JSON.stringify(line_items.length > 0) ? (
           <Badge
             ml="-20px"

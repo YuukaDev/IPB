@@ -11,13 +11,12 @@ export const PriceTag = ({ price, rootProps }) => {
 const Price = ({ children, textProps }) => {
   return (
     <Text
-      as="span"
       fontWeight="medium"
-      color="gray.700"
+      fontSize="17px"
       textDecoration="none"
       {...textProps}
     >
-      {children}
+      {children}€
     </Text>
   );
 };

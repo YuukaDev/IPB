@@ -1,50 +1,38 @@
-import {
-  AspectRatio,
-  Box,
-  HStack,
-  Image,
-  Skeleton,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { AspectRatio, Box, Flex, Image, Stack, Text } from "@chakra-ui/react";
 import * as React from "react";
 import NextLink from "next/link";
 import { PriceTag } from "./PriceTag";
 
 export const ProductCard = ({ product }) => {
+  console.log(product);
   return (
     <Stack>
-      <Box position="relative">
-        <AspectRatio ratio={4 / 3}>
-          <NextLink href={`/products/${product.permalink}`} passHref>
-            <Image
-              cursor="pointer"
-              _hover={{
-                transform: "scale(1.05)",
-                transition: "1s all ease",
-              }}
-              transition="1s all ease"
-              src={product.image.url}
-              alt={product.name}
-              draggable="false"
-              fallback={<Skeleton />}
-            />
-          </NextLink>
-        </AspectRatio>
+      <Box display="flex" flexDir="column">
+        <NextLink href={`/products/${product.permalink}`} passHref>
+          <Image
+            w="350px"
+            h="190px"
+            borderRadius="16px"
+            cursor="pointer"
+            _hover={{
+              transform: "scale(1.05)",
+              transition: "0.3s all ease",
+            }}
+            transition="0.3s all ease"
+            src={product.image.url}
+            alt={product.name}
+          />
+        </NextLink>
       </Box>
-      <Stack>
-        <Stack spacing="1">
-          <Text fontWeight="medium" color="gray.700">
-            {product.name}
-          </Text>
-          <PriceTag price={product.price.formatted_with_code} currency="USD" />
-        </Stack>
-        <HStack>
-          <Text fontSize="sm" color="gray.600">
-            12 Reviews
-          </Text>
-        </HStack>
-      </Stack>
+      <Flex
+        justifyContent="space-between"
+        alignItems="center"
+        fontSize="14px"
+        fontWeight="500"
+      >
+        <Text>{product.name}</Text>
+        <PriceTag price={product.price.formatted} currency="USD" />
+      </Flex>
     </Stack>
   );
 };
