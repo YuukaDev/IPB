@@ -1,14 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Metrophobic&display=swap");
 
-.hero-image {
-  height: 70vh;
-  width: 100%;
-  background-image: url("https://s3.gaming-cdn.com/images/homeDisplay/campaign-banner-626ab88f75912.jpg");
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../images/forza_5.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: 100%;
+  height: 80vh;
 }
 
 .wave {
-  z-index: 0;
-  margin-top: -22%;
+  margin-top: -425px;
+}
+
+.hero-link {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  background-color: "#fff";
+  color: "#000";
+  font-weight: 500;
+  padding: "14px 28px";
 }

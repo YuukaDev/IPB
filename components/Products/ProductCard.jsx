@@ -4,7 +4,6 @@ import NextLink from "next/link";
 import { PriceTag } from "./PriceTag";
 
 export const ProductCard = ({ product }) => {
-  console.log(product);
   return (
     <Stack>
       <Box display="flex" flexDir="column">
