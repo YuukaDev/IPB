@@ -1,6 +1,4 @@
-import { Box, Stack, Link, Text, Image, AspectRatio, Skeleton, Button, Flex } from "@chakra-ui/react";
 import Navigation from "../../components/Navigation/Navigation";
-import { PriceTag } from "../../components/Products/PriceTag";
 import commerce from "../../lib/commerce";
 
 export async function getStaticPaths() {

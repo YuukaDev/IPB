@@ -31,7 +31,6 @@ export default function Hero() {
             d="M0,192L1440,256L1440,320L0,320Z"
           ></path>
         </svg>
-        <h1>yo</h1>
       </div>
     </>
   );

@@ -6,8 +6,8 @@ import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
 export default function Navigation() {
   return (
     <nav>
-      <div className="sticky top-0 shadow-lg flex justify-between px-52 p-3 items-center">
-        <div>
+      <div className="flex justify-between px-52 p-3 items-center">
+        <div className="relative">
           <a aria-label="Home" href="/">
             <Image src={logoImage} alt="logo" width="90" height="50" />
           </a>
