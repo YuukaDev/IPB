@@ -6,14 +6,17 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        visina: "150vh"
+        visina: "5vh"
       },
       backgroundColor: {
-        navigationBackground: "#0D0E0D"
+        navigationBackground: "#0D0E0D",
+        featuredColor: "rgb(209 213 219)"
       },
       colors: {
-        navigationColor: "rgb(27, 19, 60)",
-        heroColor: "rgb(255, 255, 255)"
+        navigationColor: "rgb(68, 68, 68)",
+        heroColor: "rgb(255, 255, 255)",
+        gradientColor: "#00a4bd",
+        gradientColor2: "#00bda5"
       },
       fontSize: {
         navigationlink: "1em"
