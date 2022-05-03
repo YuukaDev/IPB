@@ -6,7 +6,7 @@ export default function TrendingProducts({ products }) {
       <h1 className="text-lg tracking-heroWide uppercase leading-3">
         Featured Games
       </h1>
-      <span class="inline-grid grid-cols-3 gap-8">
+      <span className="inline-grid grid-cols-3 gap-8 mt-14">
         {products.map((product) => (
           <TrendingCard key={product.id} product={product} />
         ))}

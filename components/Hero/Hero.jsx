@@ -12,7 +12,7 @@ export default function Hero() {
           </h1>
           <div className="mt-6">
             <Link passHref href="/">
-              <button class="bg-transparent uppercase hover:bg-white text-white font-semibold hover:text-black py-3 px-5 border border-white  transition-all">
+              <button className="font-normal tracking-widest bg-transparent uppercase hover:bg-white text-white hover:text-black py-3 px-5 border border-white  transition-all">
                 Shop Now
               </button>
             </Link>
@@ -26,8 +26,8 @@ export default function Hero() {
           viewBox="0 0 1440 320"
         >
           <path
-            fill="#fff"
-            fill-opacity="1"
+            fill="#F2F3F4"
+            fillOpacity="1"
             d="M0,192L1440,256L1440,320L0,320Z"
           ></path>
         </svg>

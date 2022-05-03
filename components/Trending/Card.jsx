@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function TrendingCard({ product }) {
   return (
-    <div className="mt-16 mb-40">
+    <div className="">
       <motion.div
         key={product._id}
         whileHover={{ scale: 1.1 }}
