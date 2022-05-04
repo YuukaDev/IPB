@@ -13,7 +13,7 @@ export default function TrendingProducts({ products }) {
       </span>
       <div>
         <button className="mt-20 font-normal tracking-widest bg-black uppercase hover:bg-transparent hover:border-solid border border-black text-white hover:text-black py-3 px-5 transition-all">
-          Shop All
+          All Games
         </button>
       </div>
     </div>
