@@ -16,12 +16,13 @@ export async function getStaticProps() {
 }
 
 export default function Home({ products }) {
+  console.log(products);
   return (
     <div>
       <Navigation />
       <Hero />
       <TrendingProducts products={products} />
       <Features />
-    </div>
+    </div >
   )
 }

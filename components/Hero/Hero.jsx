@@ -12,7 +12,7 @@ export default function Hero() {
           </h1>
           <div className="mt-6">
             <Link passHref href="/">
-              <button className="font-normal tracking-widest bg-transparent uppercase hover:bg-white text-white hover:text-black py-3 px-5 border border-white  transition-all">
+              <button className="font-normal tracking-widest bg-transparent uppercase hover:bg-white text-white hover:text-black py-3 px-5 border border-white transition-all">
                 Shop Now
               </button>
             </Link>
