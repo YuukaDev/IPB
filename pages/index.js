@@ -1,4 +1,5 @@
-import Features from "../components/Features/Features";
+import About from "../components/About/About";
+import Category from "../components/Categories/Category";
 import Hero from "../components/Hero/Hero";
 import Navigation from "../components/Navigation/Navigation";
 import TrendingProducts from "../components/Trending/TrendingProducts";
@@ -16,13 +17,12 @@ export async function getStaticProps() {
 }
 
 export default function Home({ products }) {
-  console.log(products);
   return (
     <div>
       <Navigation />
       <Hero />
       <TrendingProducts products={products} />
-      <Features />
+      <Category products={products} />
     </div >
   )
 }

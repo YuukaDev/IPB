@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind screens;
 
 @import url("https://fonts.googleapis.com/css2?family=Metrophobic&display=swap");
 
@@ -10,7 +11,7 @@
   }
 }
 
-*{
+* {
   scroll-behavior: smooth;
 }
 
@@ -38,4 +39,12 @@ body {
   color: "#000";
   font-weight: 500;
   padding: "14px 28px";
+}
+
+.category {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://www.instant-gaming.com/themes/igv2/modules/category/images/category-background1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }

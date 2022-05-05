@@ -19,7 +19,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className="hero-container">
+      <div className="md:hidden sm:hidden lg:inline">
         <svg
           className="wave"
           xmlns="http://www.w3.org/2000/svg"

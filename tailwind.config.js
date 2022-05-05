@@ -9,14 +9,12 @@ module.exports = {
         visina: "5vh"
       },
       backgroundColor: {
-        navigationBackground: "#0D0E0D",
+        navigationBackground: "#F2F3F4",
         featuredColor: "rgb(209 213 219)"
       },
       colors: {
         navigationColor: "rgb(68, 68, 68)",
         heroColor: "rgb(255, 255, 255)",
-        gradientColor: "#00a4bd",
-        gradientColor2: "#00bda5"
       },
       fontSize: {
         navigationlink: "1em"
