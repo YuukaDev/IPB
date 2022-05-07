@@ -26,26 +26,39 @@ body {
   background-position: bottom;
   background-repeat: no-repeat;
   height: 80vh;
+  width: 100%;
 }
 
-.wave {
-  margin-top: -420px;
+.mySwiper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
 }
 
-.hero-link {
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  background-color: "#fff";
-  color: "#000";
-  font-weight: 500;
-  padding: "14px 28px";
+.swiper {
+  cursor: grab;
+  width: 100%;
+  height: 100%;
 }
 
-.category {
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-pagination-bullet {
+  border: 5px solid #fff;
+}
+
+.highlight {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://www.instant-gaming.com/themes/igv2/modules/category/images/category-background1.jpg");
+    url("../images/dead-cells.jpg");
   background-size: cover;
-  background-position: center;
   background-repeat: no-repeat;
+  background-position: center;
+  height: 50vh;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
-

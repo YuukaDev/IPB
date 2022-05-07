@@ -2,8 +2,7 @@ import TrendingCard from "./Card";
 
 export default function TrendingProducts({ products }) {
   return (
-    <div id="hottest">
-      {" "}
+    <div id="hottest" className="mt-14">
       <div className="text-navigationColor text-center">
         <h1 className="text-lg mb-10 tracking-heroWide uppercase leading-3">
           Featured Games

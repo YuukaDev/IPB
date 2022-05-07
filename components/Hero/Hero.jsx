@@ -1,37 +1,60 @@
 import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper";
+
 export default function Hero() {
   return (
-    <>
-      <div className="hero text-heroColor">
-        <div className="w-full h-4/5 flex justify-center items-center flex-col">
-          <p className="text-md uppercase font-medium height leading-5 tracking-heroWide">
-            New Trending
-          </p>
-          <h1 className="mt-5 text-3xl tracking-heroWide leading-7 font-normal">
-            Forza Horizon 5
-          </h1>
-          <div className="mt-6">
-            <Link passHref href="/">
-              <button className="font-normal tracking-widest bg-transparent uppercase hover:bg-white text-white hover:text-black py-3 px-5 border border-white transition-all">
-                Shop Now
-              </button>
-            </Link>
+    <Swiper
+      autoplay={{
+        autoplay: true,
+        delay: 5000,
+      }}
+      pagination={{
+        dynamicBullets: true,
+        clickable: true,
+        type: "bullets",
+      }}
+      modules={[Pagination, Autoplay]}
+      className="mySwiper"
+    >
+      <SwiperSlide>
+        <div className="hero text-heroColor">
+          <div className="w-full h-hero flex justify-center items-center flex-col">
+            <p className="text-md uppercase font-medium height leading-5 tracking-heroWide">
+              New Trending
+            </p>
+            <h1 className="mt-5 text-3xl tracking-heroWide leading-7 font-normal">
+              Forza Horizon 5
+            </h1>
+            <div className="mt-6">
+              <Link passHref href="/">
+                <button className="font-normal tracking-widest bg-transparent uppercase hover:bg-white text-white hover:text-black py-3 px-5 border border-white transition-all">
+                  Shop Now
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="md:hidden sm:hidden lg:inline">
-        <svg
-          className="wave"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 320"
-        >
-          <path
-            fill="#F2F3F4"
-            fillOpacity="1"
-            d="M0,192L1440,256L1440,320L0,320Z"
-          ></path>
-        </svg>
-      </div>
-    </>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div className="hero text-heroColor">
+          <div className="w-full h-hero flex justify-center items-center flex-col">
+            <p className="text-md uppercase font-medium height leading-5 tracking-heroWide">
+              New Trending
+            </p>
+            <h1 className="mt-5 text-3xl tracking-heroWide leading-7 font-normal">
+              Forza Horizon 5
+            </h1>
+            <div className="mt-6">
+              <Link href="/">
+                <button className="font-normal tracking-widest bg-transparent uppercase hover:bg-white text-white hover:text-black py-3 px-5 border border-white transition-all">
+                  Shop Now
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </SwiperSlide>
+    </Swiper>
   );
 }

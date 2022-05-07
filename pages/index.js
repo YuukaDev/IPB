@@ -1,6 +1,6 @@
-import About from "../components/About/About";
 import Category from "../components/Categories/Category";
 import Hero from "../components/Hero/Hero";
+import Highlight from "../components/Highlight/Highlight";
 import Navigation from "../components/Navigation/Navigation";
 import TrendingProducts from "../components/Trending/TrendingProducts";
 import commerce from "../lib/commerce";
@@ -22,7 +22,7 @@ export default function Home({ products }) {
       <Navigation />
       <Hero />
       <TrendingProducts products={products} />
-      <Category products={products} />
+      <Highlight />
     </div >
   )
 }

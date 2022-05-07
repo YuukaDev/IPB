@@ -6,7 +6,11 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        visina: "5vh"
+        visina: "5vh",
+        hero: "100%"
+      },
+      width: {
+        highlight: "63%"
       },
       backgroundColor: {
         navigationBackground: "#F2F3F4",

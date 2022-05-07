@@ -1,74 +1,35 @@
-import Image from "next/image";
-import Link from "next/link";
-import logoImage from "../public/logo_1.png";
-import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
+import React, { useRef, useState } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
 
-export default function Navigation() {
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/bundle";
+
+// import required modules
+import { Pagination } from "swiper";
+
+export default function App() {
     return (
-        <nav className="h-visina">
-            <div className="mt-10 sticky top-0 z-0 flex justify-between px-52 p-3 items-center">
-                <div>
-                    <a aria-label="Home" href="/">
-                        <Image src={logoImage} alt="logo" width="90" height="50" />
-                    </a>
-                </div>
-                <div className="flex flex-wrap gap-5 text-navigationlink">
-                    <Link href="/" passHref>
-                        <a aria-label="Home">
-                            <p className=" ">
-                                Home
-                            </p>
-                        </a>
-                    </Link>
-                    <Link href="/" passHref>
-                        <a aria-label="Home">
-                            <p className=" ">
-                                Shop All
-                            </p>
-                        </a>
-                    </Link>
-                    <Link href="/" passHref>
-                        <a aria-label="Home">
-                            <p className=" ">
-                                Hottest
-                            </p>
-                        </a>
-                    </Link>
-                    <Link href="/" passHref>
-                        <a aria-label="Home">
-                            <p className=" ">
-                                Newest
-                            </p>
-                        </a>
-                    </Link>
-                    <Link href="/" passHref>
-                        <a aria-label="Home">
-                            <p className=" ">
-                                About Us
-                            </p>
-                        </a>
-                    </Link>
-                    <Link href="/" passHref>
-                        <a aria-label="Home">
-                            <p className=" ">
-                                Contact
-                            </p>
-                        </a>
-                    </Link>
-                </div>
-                <div className="flex gap-3">
-                    <Link href="/" passHref>
-                        <a>
-                            <AiOutlineSearch fontSize="1.2em" />
-                        </a>
-                    </Link>
-                    <Link href="/" passHref>
-                        <a>
-                            <AiOutlineShoppingCart fontSize="1.2em" />
-                        </a>
-                    </Link>
-                </div>
-            </div>
-        </nav >
-    )
+        <>
+            <Swiper
+                pagination={{
+                    dynamicBullets: true,
+                }}
+                modules={[Pagination]}
+                className="mySwiper"
+            >
+                <SwiperSlide>Slide 1</SwiperSlide>
+                <SwiperSlide>Slide 2</SwiperSlide>
+                <SwiperSlide>Slide 3</SwiperSlide>
+                <SwiperSlide>Slide 4</SwiperSlide>
+                <SwiperSlide>Slide 5</SwiperSlide>
+                <SwiperSlide>Slide 6</SwiperSlide>
+                <SwiperSlide>Slide 7</SwiperSlide>
+                <SwiperSlide>Slide 8</SwiperSlide>
+                <SwiperSlide>Slide 9</SwiperSlide>
+            </Swiper>
+        </>
+    );
 }
