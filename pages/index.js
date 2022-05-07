@@ -1,4 +1,3 @@
-import Category from "../components/Categories/Category";
 import Hero from "../components/Hero/Hero";
 import Highlight from "../components/Highlight/Highlight";
 import Navigation from "../components/Navigation/Navigation";
@@ -7,7 +6,7 @@ import commerce from "../lib/commerce";
 
 export async function getStaticProps() {
   const { data: products } = await commerce.products.list({
-    limit: 9
+    limit: 9,
   });
   return {
     props: {
