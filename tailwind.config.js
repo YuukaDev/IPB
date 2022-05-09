@@ -21,7 +21,9 @@ module.exports = {
         heroColor: "rgb(255, 255, 255)",
       },
       fontSize: {
-        navigationlink: "1em"
+        navigationlink: "1em",
+        aboutUs: "1.2em",
+        aboutParagraph: "1em"
       },
       letterSpacing: {
         heroWide: "3px"

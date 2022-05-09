@@ -1,31 +1,62 @@
-import { AiOutlineSafety, AiOutlineWechat } from "react-icons/ai";
+import {
+  AiOutlineInbox,
+  AiOutlineSafety,
+  AiOutlineGlobal,
+} from "react-icons/ai";
 
-import { BiCloudDownload } from "react-icons/bi";
-
-export default function Features() {
+export default function About() {
   return (
-    <div className="mt-28 float-left w-2/6">
-      <div className="">
-        <h1 className="text-lg text-left">Who Are We</h1>
-        <p className="text-left">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero, ex
-          nulla aperiam reiciendis, ipsam distinctio veritatis exercitationem
-          vero sit in ducimus iure labore at voluptatem nihil recusandae magnam
-          dolores enim?
-        </p>
+    <div className="text-navigationColor mb-20">
+      <div className="text-center">
+        <h1 className="text-lg mt-20 tracking-heroWide uppercase leading-3">
+          Why Choose Us
+        </h1>
       </div>
-      <div className="flex justify-start items-center gap-20 mt-5">
-        <div className="flex flex-col justify-start items-start">
-          <BiCloudDownload fontSize="3em" />
-          <h2 className="mt-2 text-lg">Instant Delivery</h2>
+      <div className="flex max-w-5xl m-auto gap-20 mt-16 justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
+          <AiOutlineInbox
+            fontSize="3.3em"
+            style={{
+              backgroundColor: "rgb(209 213 219)",
+              borderRadius: "100px",
+              padding: "8px",
+            }}
+          />
+          <h1 className="text-aboutUs mt-5 mb-1">Super Fast</h1>
+          <p className="text-aboutParagraph text-center">
+            Xquisite is very simple and easy to use and is also very fast and
+            functional
+          </p>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <AiOutlineSafety fontSize="3em" />
-          <h2 className="mt-2 text-lg">Reliable & safe</h2>
+          <AiOutlineSafety
+            fontSize="3.3em"
+            style={{
+              backgroundColor: "rgb(209 213 219)",
+              borderRadius: "100px",
+              padding: "8px",
+            }}
+          />
+          <h1 className="text-aboutUs mt-5 mb-1">Reliable & Safe</h1>
+          <p className="text-aboutParagraph text-center">
+            Xquisite is very simple and easy to use and is also very fast and
+            functional
+          </p>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <AiOutlineWechat fontSize="3em" />
-          <h2 className="mt-2 text-lg">Customer Support</h2>
+          <AiOutlineGlobal
+            fontSize="3.3em"
+            style={{
+              backgroundColor: "rgb(209 213 219)",
+              borderRadius: "100px",
+              padding: "8px",
+            }}
+          />
+          <h1 className="text-aboutUs mt-4 mb-1">Support</h1>
+          <p className="text-aboutParagraph text-center">
+            Xquisite is very simple and easy to use and is also very fast and
+            functional
+          </p>
         </div>
       </div>
     </div>

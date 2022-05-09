@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper";
+import { Pagination, Autoplay, EffectFade } from "swiper";
 
 export default function Hero() {
   return (
     <Swiper
+      effect="fade"
+      grabCursor={true}
       autoplay={{
         autoplay: true,
         delay: 5000,
@@ -14,8 +16,8 @@ export default function Hero() {
         clickable: true,
         type: "bullets",
       }}
-      modules={[Pagination, Autoplay]}
-      className="mySwiper"
+      modules={[Pagination, Autoplay, EffectFade]}
+      className="mySwiper select-none"
     >
       <SwiperSlide>
         <div className="hero text-heroColor">
@@ -37,13 +39,13 @@ export default function Hero() {
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className="hero text-heroColor">
+        <div className="hero-2 text-heroColor">
           <div className="w-full h-hero flex justify-center items-center flex-col">
             <p className="text-md uppercase font-medium height leading-5 tracking-heroWide">
               New Trending
             </p>
             <h1 className="mt-5 text-3xl tracking-heroWide leading-7 font-normal">
-              Forza Horizon 5
+              Dying Light 2 Stay Human
             </h1>
             <div className="mt-6">
               <Link href="/">
