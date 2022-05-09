@@ -45,7 +45,26 @@ export default function Hero() {
               New Trending
             </p>
             <h1 className="mt-5 text-3xl tracking-heroWide leading-7 font-normal">
-              Dying Light 2 Stay Human
+              Risk of Rain 2: Survivors of the Void
+            </h1>
+            <div className="mt-6">
+              <Link href="/">
+                <button className="font-normal tracking-widest bg-transparent uppercase hover:bg-white text-white hover:text-black py-3 px-5 border border-white transition-all">
+                  Shop Now
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div className="hero-3 text-heroColor">
+          <div className="w-full h-hero flex justify-center items-center flex-col">
+            <p className="text-md uppercase font-medium height leading-5 tracking-heroWide">
+              New Trending
+            </p>
+            <h1 className="mt-5 text-3xl tracking-heroWide leading-7 font-normal">
+              Hollow Knight
             </h1>
             <div className="mt-6">
               <Link href="/">
