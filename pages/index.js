@@ -1,8 +1,4 @@
-import Hero from "../components/Hero/Hero";
-import Highlight from "../components/Highlight/Highlight";
-import Navigation from "../components/Navigation/Navigation";
-import FeaturedSection from "../components/FeaturedSection/FeaturedSection";
-import About from "../components/About/About";
+import { Layout } from "../layout/Layout";
 
 import commerce from "../lib/commerce";
 
@@ -24,11 +20,7 @@ export async function getStaticProps() {
 export default function Home({ products, categories }) {
   return (
     <div>
-      <Navigation />
-      <Hero />
-      <FeaturedSection products={products} />
-      <Highlight />
-      <About />
+      <Layout products={products} />
     </div >
   )
 }

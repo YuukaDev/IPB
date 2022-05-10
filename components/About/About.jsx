@@ -1,6 +1,4 @@
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 import {
   AiOutlineInbox,
@@ -8,26 +6,17 @@ import {
   AiOutlineGlobal,
 } from "react-icons/ai";
 
-const boxVariant = {
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
-  hidden: { opacity: 0, scale: 0 },
-};
-
 export default function About() {
-  const control = useAnimation();
-  const [ref, inView] = useInView();
-
-  useEffect(() => {
-    if (inView) {
-      control.start("visible");
-    }
-  }, [control, inView]);
   return (
     <motion.div
-      ref={ref}
-      variants={boxVariant}
-      initial="hidden"
-      animate={control}
+      initial={{ opacity: 0 }}
+      whileInView={{
+        opacity: 1,
+        transition: {
+          delay: 0.3,
+        },
+      }}
+      viewport={{ once: true }}
     >
       <div className="text-navigationColor mb-20">
         <div className="text-center">
