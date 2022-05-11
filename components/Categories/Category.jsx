@@ -7,7 +7,7 @@ const Card = ({ children }) => {
 export const Category = () => {
   return (
     <Card>
-      <section className="bg-category-1 h-highlight w-full  bg-no-repeat bg-cover bg-centertext-heroColor">
+      <section className="bg-category-1 h-categoryContainer w-full  bg-no-repeat bg-cover bg-centertext-heroColor">
         <div className="flex justify-center items-center flex-col h-categories">
           <h1 className="text-lg uppercase font-medium height leading-5 tracking-heroWide">
             Action
@@ -20,7 +20,7 @@ export const Category = () => {
           </Link>
         </div>
       </section>
-      <section className="bg-category-2 h-highlight w-full bg-no-repeat bg-cover bg-centertext-heroColor">
+      <section className="bg-category-2 h-categoryContainer w-full  bg-no-repeat bg-cover bg-centertext-heroColor">
         <div className="flex justify-center items-center flex-col h-categories">
           <h1 className="text-lg uppercase font-medium height leading-5 tracking-heroWide">
             Adventure
@@ -33,7 +33,7 @@ export const Category = () => {
           </Link>
         </div>
       </section>
-      <section className="bg-category-3 h-highlight w-full bg-no-repeat bg-cover bg-centertext-heroColor">
+      <section className="bg-category-3 h-categoryContainer w-full  bg-no-repeat bg-cover bg-centertext-heroColor">
         <div className="flex justify-center items-center flex-col h-categories">
           <h1 className="text-lg uppercase font-medium height leading-5 tracking-heroWide">
             RPG
@@ -46,7 +46,7 @@ export const Category = () => {
           </Link>
         </div>
       </section>
-      <section className="bg-category-4 h-highlight w-full bg-no-repeat bg-cover bg-centertext-heroColor">
+      <section className="bg-category-4 h-categoryContainer w-full  bg-no-repeat bg-cover bg-centertext-heroColor">
         <div className="flex justify-center items-center flex-col h-categories">
           <h1 className="text-lg uppercase font-medium height leading-5 tracking-heroWide">
             Horror
@@ -59,7 +59,7 @@ export const Category = () => {
           </Link>
         </div>
       </section>
-      <section className="bg-category-5 h-highlight w-full bg-no-repeat bg-cover bg-centertext-heroColor">
+      <section className="bg-category-5 h-categoryContainer w-full  bg-no-repeat bg-cover bg-centertext-heroColor">
         <div className="flex justify-center items-center flex-col h-categories">
           <h1 className="text-lg uppercase font-medium height leading-5 tracking-heroWide">
             Indie
