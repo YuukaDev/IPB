@@ -10,6 +10,7 @@ module.exports = {
         categoryContainer: "45vh",
         categories: "45vh",
         highlight: "50vh",
+        aboutContainer: "100vh",
         hero: "100%"
       },
       width: {

@@ -12,8 +12,12 @@ export const Layout = ({ products }) => {
       <main>
         <Hero />
         <FeaturedSection products={products} />
+        <br />
+        <br />
+        <br />
         <Highlight />
         <About />
+        <br />
         <Category />
       </main>
     </div>

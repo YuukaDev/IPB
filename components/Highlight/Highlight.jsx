@@ -2,13 +2,7 @@ import Link from "next/link";
 
 export default function Highlight() {
   return (
-    <div
-      style={{
-        marginTop: "50px",
-        marginBottom: "50px",
-      }}
-      className="bg-highlight-section w-full h-highlight bg-no-repeat bg-cover bg-center  text-heroColor"
-    >
+    <div className="bg-highlight-section w-full h-highlight bg-no-repeat bg-cover bg-center  text-heroColor">
       <div className="h-hero flex justify-center items-start w-highlight m-auto flex-col">
         <p className="text-md uppercase font-medium height leading-5 tracking-heroWide">
           Newest
