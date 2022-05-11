@@ -19,65 +19,15 @@ body {
   background-color: #f2f3f4;
 }
 
-.hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../images/forza_5.jpg");
-  background-size: cover;
-  background-position: bottom;
-  background-repeat: no-repeat;
-  height: 80vh;
-  width: 100%;
-}
-
-.hero-2 {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../images/nba.jpg");
-  background-size: cover;
-  background-position: bottom;
-  background-repeat: no-repeat;
-  height: 80vh;
-  width: 100%;
-}
-
-.hero-3 {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../images/hollow.jpg");
-  background-size: cover;
-  background-position: bottom;
-  background-repeat: no-repeat;
-  height: 80vh;
-  width: 100%;
-}
-
-.mySwiper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-}
-
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .swiper-pagination-bullet {
   border: 5px solid #fff;
 }
 
-.highlight {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../images/dead-cells.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 50vh;
-  margin-top: 50px;
-  margin-bottom: 50px;
+section:nth-child(4) {
+  width: 150%;
+}
+
+section:nth-child(5) {
+  margin-left: 317px;
+  width: 150%;
 }

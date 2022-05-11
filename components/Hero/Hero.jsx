@@ -20,7 +20,7 @@ export default function Hero() {
       className="mySwiper select-none"
     >
       <SwiperSlide>
-        <div className="hero text-heroColor">
+        <div className="bg-hero-1 w-full h-landingHero bg-no-repeat bg-cover bg-bottom text-heroColor">
           <div className="w-full h-hero flex justify-center items-center flex-col">
             <p className="text-md uppercase font-medium height leading-5 tracking-heroWide">
               New Trending
@@ -39,7 +39,7 @@ export default function Hero() {
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className="hero-2 text-heroColor">
+        <div className="bg-hero-2 w-full h-landingHero bg-no-repeat bg-cover bg-bottom text-heroColor">
           <div className="w-full h-hero flex justify-center items-center flex-col">
             <p className="text-md uppercase font-medium height leading-5 tracking-heroWide">
               New Trending
@@ -58,7 +58,7 @@ export default function Hero() {
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className="hero-3 text-heroColor">
+        <div className="bg-hero-3 w-full h-landingHero bg-no-repeat bg-cover bg-bottom text-heroColor">
           <div className="w-full h-hero flex justify-center items-center flex-col">
             <p className="text-md uppercase font-medium height leading-5 tracking-heroWide">
               New Trending
