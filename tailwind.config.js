@@ -7,7 +7,8 @@ module.exports = {
     extend: {
       height: {
         landingHero: "80vh",
-        categories: "50vh",
+        categoryContainer: "45vh",
+        categories: "45vh",
         highlight: "50vh",
         hero: "100%"
       },
