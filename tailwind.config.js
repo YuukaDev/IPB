@@ -14,7 +14,8 @@ module.exports = {
         hero: "100%"
       },
       width: {
-        highlight: "63%"
+        highlight: "63%",
+        footer: "355px"
       },
       backgroundColor: {
         navigationBackground: "#F2F3F4",
@@ -23,11 +24,13 @@ module.exports = {
       colors: {
         navigationColor: "rgb(68, 68, 68)",
         heroColor: "rgb(255, 255, 255)",
+        footer: "rgb(106, 106, 106)"
       },
       fontSize: {
         navigationlink: "1em",
         aboutUs: "1.2em",
-        aboutParagraph: "1em"
+        aboutParagraph: "1em",
+        footerFont: "15px"
       },
       letterSpacing: {
         heroWide: "3px"
@@ -45,6 +48,12 @@ module.exports = {
       },
       gridTemplateColumns: {
         'categories': 'repeat(3, 1fr)'
+      },
+      padding: {
+        footer: "30px"
+      },
+      gap: {
+        footer: "10px"
       }
     },
   },
