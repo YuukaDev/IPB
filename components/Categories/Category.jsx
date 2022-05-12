@@ -1,7 +1,9 @@
 import Link from "next/link";
 
 const Card = ({ children }) => {
-  return <div class="grid grid-cols-categories text-heroColor">{children}</div>;
+  return (
+    <div className="grid grid-cols-categories text-heroColor">{children}</div>
+  );
 };
 
 export const Category = () => {
