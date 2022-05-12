@@ -31,3 +31,9 @@ section:nth-child(5) {
   margin-left: 317px;
   width: 150%;
 }
+
+hr {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid gray;
+}
