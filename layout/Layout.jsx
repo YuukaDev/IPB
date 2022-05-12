@@ -4,6 +4,7 @@ import FeaturedSection from "../components/FeaturedSection/FeaturedSection";
 import Highlight from "../components/Highlight/Highlight";
 import About from "../components/About/About";
 import { Category } from "../components/Categories/Category";
+import Footer from "../components/Footer/Footer";
 
 export const Layout = ({ products }) => {
   return (
@@ -20,6 +21,9 @@ export const Layout = ({ products }) => {
         <br />
         <Category />
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };
