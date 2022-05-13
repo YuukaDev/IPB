@@ -11,15 +11,21 @@ module.exports = {
         categories: "45vh",
         highlight: "50vh",
         aboutContainer: "100vh",
-        hero: "100%"
+        hero: "100%",
+        productBox: "300px",
+        imageBox: "300px"
       },
       width: {
         highlight: "63%",
-        footer: "355px"
+        footer: "355px",
+        productBox: "400px",
+        imageBox: "500px"
       },
       backgroundColor: {
         navigationBackground: "#F2F3F4",
-        featuredColor: "rgb(209 213 219)"
+        featuredColor: "rgb(209 213 219)",
+        productBox: "rgb(243, 243, 243)",
+        productButton: "#d63d00"
       },
       colors: {
         navigationColor: "rgb(68, 68, 68)",

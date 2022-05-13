@@ -1,4 +1,5 @@
 import Navigation from "../../components/Navigation/Navigation";
+import Product from "../../components/ProductOverview/Product";
 import commerce from "../../lib/commerce";
 
 export async function getStaticPaths() {
@@ -29,15 +30,11 @@ export async function getStaticProps({ params }) {
 
 export default function ProductPage({ product }) {
     const addToCart = () => commerce.cart.add(product.id).then((response) => console.log(response));
+    console.log(product);
     return (
         <>
             <Navigation />
-            <div>
-                <p>{product.name}</p>
-                <p>{product.description}</p>
-                <span>{product.price.formatted_with_symbol}</span>
-                <img src={product.image.url} />
-            </div>
+            <Product product={product} />
         </>
     )
 }
