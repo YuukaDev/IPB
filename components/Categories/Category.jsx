@@ -48,7 +48,7 @@ export const Category = () => {
           </Link>
         </div>
       </section>
-      <section className="bg-category-4 h-categoryContainer w-full  bg-no-repeat bg-cover bg-centertext-heroColor">
+      <section className="bg-category-4 h-categoryContainer w-full bg-no-repeat bg-cover bg-centertext-heroColor">
         <div className="flex justify-center items-center flex-col h-categories">
           <h1 className="text-lg uppercase font-medium height leading-5 tracking-heroWide">
             Horror
