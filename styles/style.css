@@ -39,12 +39,12 @@ hr {
   border: 1px solid gray;
 }
 
-.mySwiper {
-  width: 700px;
-  height: 300px;
+.mySwiper2 {
+  width: 900px;
+  height: 400px;
 }
 
-.mySwiper2 {
-  width: 700px;
-  height: 300px;
+.mySwiper {
+  height: 80px;
+  width: 400px;
 }
