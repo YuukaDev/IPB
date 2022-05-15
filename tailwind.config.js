@@ -13,7 +13,8 @@ module.exports = {
         aboutContainer: "100vh",
         hero: "100%",
         productBox: "300px",
-        imageBox: "300px"
+        imageBox: "300px",
+        productHero: "120vh"
       },
       width: {
         highlight: "63%",

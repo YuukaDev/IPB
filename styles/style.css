@@ -4,7 +4,6 @@
 @tailwind screens;
 
 @import url("https://fonts.googleapis.com/css2?family=Metrophobic&display=swap");
-@import "~react-image-gallery/styles/css/image-gallery.css";
 
 @layer base {
   html {
@@ -39,12 +38,16 @@ hr {
   border: 1px solid gray;
 }
 
-.mySwiper2 {
-  width: 900px;
-  height: 400px;
+.gallery-up {
+  width: 60%;
+  height: 600px;
 }
 
-.mySwiper {
-  height: 80px;
-  width: 400px;
+.gallery-up img {
+  width: 100%;
+}
+
+.gallery-down {
+  height: 100px;
+  width: 60%;
 }

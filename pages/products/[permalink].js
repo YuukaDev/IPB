@@ -30,7 +30,6 @@ export async function getStaticProps({ params }) {
 
 export default function ProductPage({ product }) {
     const addToCart = () => commerce.cart.add(product.id).then((response) => console.log(response));
-    console.log(product);
     return (
         <>
             <Navigation />
