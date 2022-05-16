@@ -39,8 +39,8 @@ hr {
 }
 
 .gallery-up {
-  width: 60%;
-  height: 600px;
+  width: 30%;
+  height: auto;
 }
 
 .gallery-up img {
@@ -48,6 +48,6 @@ hr {
 }
 
 .gallery-down {
-  height: 100px;
-  width: 60%;
+  height: auto;
+  width: 30%;
 }
