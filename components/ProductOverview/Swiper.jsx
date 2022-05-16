@@ -5,7 +5,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper";
 export default function SwiperImage({ product }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
-    <div className="flex flex-col">
+    <div className="min-w-0">
       <Swiper
         spaceBetween={10}
         navigation={true}
@@ -13,7 +13,7 @@ export default function SwiperImage({ product }) {
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="gallery-up"
+        className="gallery-up w-52"
       >
         <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
