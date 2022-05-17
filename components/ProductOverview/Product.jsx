@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { FaSteam } from "react-icons/fa";
 
+import ReactPlayer from "react-player";
+import LightGallery from "lightgallery/react";
+
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
+
 const ProductBox = ({ product }) => {
   const delivery = product.has.digital_delivary;
   const inStock = product.inventory.available >= 0;
@@ -57,16 +63,34 @@ const AboutBox = ({ product }) => {
   return (
     <div className="w-2/4 mb-96">
       <div className="mt-16">
-        <h1 className="uppercase tracking-widest text-lg">Visuals</h1>
-        <video>
-          <source src={product.assets[2].url} type="video/mp4" />
-        </video>
+        <h1 className="uppercase tracking-widest text-lg mb-3">Visuals</h1>
+        <div>
+          <video className="w-video rounded-2xl" controls={true}>
+            <source src={product.assets[5].url} />
+          </video>
+          <div className="w-visualImage flex gap-3 mt-5">
+            <img className="rounded-2xl" src={product.assets[2].url} />
+            <img className="rounded-2xl" src={product.assets[3].url} />
+            <img className="rounded-2xl" src={product.assets[4].url} />
+          </div>
+        </div>
       </div>
       <div className="mt-16">
         <h1 className="uppercase tracking-widest text-lg">About Game</h1>
         <p className="text-gray-700 text-md mt-2 mb-2">
           {product.attributes[0].value}
         </p>
+      </div>
+      <div className="mt-16">
+        <h1 className="uppercase tracking-widest text-lg">Configurations</h1>
+        <div className="flex w-4/6">
+          <div className="flex flex-col gap-2">
+            <h2 className="uppercase tracking-widest text-sm mt-5">
+              Minimal Configuration
+            </h2>
+            <p>{product.description}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -92,4 +116,3 @@ export default function Product({ product }) {
     </>
   );
 }
-

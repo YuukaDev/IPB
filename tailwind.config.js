@@ -20,7 +20,9 @@ module.exports = {
         highlight: "63%",
         footer: "355px",
         productBox: "400px",
-        imageBox: "500px"
+        imageBox: "500px",
+        video: "100%",
+        visualImage: "32.5%"
       },
       backgroundColor: {
         navigationBackground: "#F2F3F4",
