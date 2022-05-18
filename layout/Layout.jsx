@@ -27,3 +27,4 @@ export const Layout = ({ products }) => {
     </div>
   );
 };
+
