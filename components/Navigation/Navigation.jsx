@@ -19,7 +19,7 @@ export default function Navigation() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all group-hover:w-full"></span>
             </a>
           </Link>
-          <Link href="/" passHref>
+          <Link href="/products" passHref>
             <a className="relative opacity-70 hover:opacity-100 transition-all group">
               <p>All Games</p>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all group-hover:w-full"></span>
