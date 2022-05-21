@@ -33,7 +33,9 @@ module.exports = {
       colors: {
         navigationColor: "rgb(68, 68, 68)",
         heroColor: "rgb(255, 255, 255)",
-        footer: "rgb(106, 106, 106)"
+        footer: "rgb(106, 106, 106)",
+        logoGreen: "#34de01",
+        lighterGreen: "#85ff60"
       },
       fontSize: {
         navigationlink: "1em",

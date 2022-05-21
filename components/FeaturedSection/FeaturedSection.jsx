@@ -1,37 +1,4 @@
-import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
-
-const Card = ({ product }) => {
-  return (
-    <div>
-      <motion.div
-        key={product._id}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <Link href={`/products/${product.permalink}`} passHref>
-          <div className="max-w-sm cursor-pointer">
-            <Image
-              style={{
-                borderRadius: "14px",
-              }}
-              loading="lazy"
-              width="500"
-              height="250"
-              src={product.image.url}
-              alt={product.name}
-            />
-          </div>
-        </Link>
-      </motion.div>
-      <div className="flex justify-between mt-3">
-        <p>{product.name}</p>
-        <span className="text-lg">${product.price.formatted}</span>
-      </div>
-    </div>
-  );
-};
+import Card from "../ProductCard/Card";
 
 export default function TrendingProducts({ products }) {
   return (

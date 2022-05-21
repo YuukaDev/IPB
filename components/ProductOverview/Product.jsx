@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FaSteam } from "react-icons/fa";
 
 const ProductBox = ({ product }) => {
-  const delivery = product.has.digital_delivary;
+  const delivery = product.has.digital_delivery;
   const inStock = product.inventory.available >= 0;
   return (
     <div className="bg-productBox max-w-sm rounded-xl overflow-hidden shadow-2xl">
