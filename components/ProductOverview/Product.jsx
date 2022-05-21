@@ -1,12 +1,6 @@
 import Link from "next/link";
 import { FaSteam } from "react-icons/fa";
 
-import ReactPlayer from "react-player";
-import LightGallery from "lightgallery/react";
-
-import lgThumbnail from "lightgallery/plugins/thumbnail";
-import lgZoom from "lightgallery/plugins/zoom";
-
 const ProductBox = ({ product }) => {
   const delivery = product.has.digital_delivary;
   const inStock = product.inventory.available >= 0;
@@ -116,7 +110,3 @@ export default function Product({ product }) {
     </>
   );
 }
-
-
-
-
