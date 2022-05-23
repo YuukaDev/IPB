@@ -45,7 +45,6 @@ export default function Example({ category, products }) {
         handleFilter();
     }, [selected])
 
-
     const Loader = () => {
         return (
             <div className="mt-32 flex justify-center items-center">

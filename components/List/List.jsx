@@ -173,42 +173,24 @@ const List = ({
                 leaveTo="opacity-0"
               >
                 <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-                  {products.map((person) => (
-                    <Listbox.Option
-                      key={person.id}
-                      className="hover:bg-lighterGreen text-gray-900 select-none relative py-2 pl-3 pr-9"
-                      value={person}
-                    >
-                      {({ selected, active }) => (
-                        <>
-                          <div className="flex items-center">
-                            <span
-                              className={classNames(
-                                selected ? "font-semibold" : "font-normal",
-                                "ml-3 block truncate"
-                              )}
-                            >
-                              Sort By Price
-                            </span>
-                          </div>
-
-                          {selected ? (
-                            <span
-                              className={classNames(
-                                active ? "text-white" : "text-indigo-600",
-                                "absolute inset-y-0 right-0 flex items-center pr-4"
-                              )}
-                            >
-                              <CheckIcon
-                                className="h-5 w-5"
-                                aria-hidden="true"
-                              />
-                            </span>
-                          ) : null}
-                        </>
-                      )}
-                    </Listbox.Option>
-                  ))}
+                  <Listbox.Option className="hover:bg-lighterGreen text-gray-900 select-none relative py-2 pl-3 pr-9">
+                    <>
+                      <div className="flex items-center">
+                        <span className="font-normal ml-3 block truncate">
+                          Price: Low to High
+                        </span>
+                      </div>
+                    </>
+                  </Listbox.Option>
+                  <Listbox.Option className="hover:bg-lighterGreen text-gray-900 select-none relative py-2 pl-3 pr-9">
+                    <>
+                      <div className="flex items-center">
+                        <span className="font-normal ml-3 block truncate">
+                          Price: High To Low
+                        </span>
+                      </div>
+                    </>
+                  </Listbox.Option>
                 </Listbox.Options>
               </Transition>
             </div>
