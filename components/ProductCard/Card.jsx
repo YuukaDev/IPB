@@ -7,7 +7,7 @@ const Card = ({ product }) => {
   return (
     <div>
       <motion.div
-        key={product._id}
+        key={product.id}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
