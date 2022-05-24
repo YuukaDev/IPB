@@ -1,7 +1,8 @@
 import Link from "next/link";
+import Card from "../ProductCard/Card";
 import { FaSteam } from "react-icons/fa";
 
-const ProductBox = ({ product }) => {
+const ProductBox = ({ product, addToCart }) => {
   const delivery = product.has.digital_delivery;
   const inStock = product.inventory.available >= 0;
   return (
@@ -27,7 +28,10 @@ const ProductBox = ({ product }) => {
           {product.price.formatted_with_symbol}
         </p>
         <div className="flex justify-center items-center">
-          <button className="font-bold w-full bg-productButton rounded-3xl tracking-widest uppercase py-3 px-5 text-heroColor">
+          <button
+            onClick={addToCart}
+            className="font-bold w-full bg-productButton rounded-3xl tracking-widest uppercase py-3 px-5 text-heroColor"
+          >
             Add To Cart
           </button>
         </div>
@@ -53,9 +57,9 @@ const ProductBox = ({ product }) => {
   );
 };
 
-const AboutBox = ({ product }) => {
+const AboutBox = ({ product, relatedProduct }) => {
   return (
-    <div className="w-2/4 mb-96">
+    <div className="w-2/4">
       <div className="mt-16">
         <h1 className="uppercase tracking-widest text-lg mb-3">Visuals</h1>
         <div>
@@ -77,20 +81,29 @@ const AboutBox = ({ product }) => {
       </div>
       <div className="mt-16">
         <h1 className="uppercase tracking-widest text-lg">Configurations</h1>
-        <div className="flex w-4/6">
-          <div className="flex flex-col gap-2">
-            <h2 className="uppercase tracking-widest text-sm mt-5">
+        <div className="flex justify-center items-center gap-10 mb-20">
+          <div className="mt-3">
+            <h2 className="uppercase tracking-widest text-sm">
               Minimal Configuration
             </h2>
-            <p>{product.description}</p>
+            <p className="mt-2">{product.attributes[1].value}</p>
+          </div>
+          <div className="mt-3">
+            <h2 className="uppercase tracking-widest text-sm">
+              Recomended Configuration
+            </h2>
+            <p className="mt-2">{product.attributes[2].value}</p>
           </div>
         </div>
+      </div>
+      <div className="mt-16">
+        <h1 className="uppercase tracking-widest text-lg">Similiar Products</h1>
       </div>
     </div>
   );
 };
 
-export default function Product({ product }) {
+export default function Product({ product, addToCart }) {
   return (
     <>
       <div
@@ -104,7 +117,7 @@ export default function Product({ product }) {
         }}
       ></div>
       <div className="-mt-80 flex flex-col justify-center items-center">
-        <ProductBox product={product} />
+        <ProductBox addToCart={addToCart} product={product} />
         <AboutBox product={product} />
       </div>
     </>

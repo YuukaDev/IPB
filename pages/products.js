@@ -21,8 +21,8 @@ export async function getStaticProps() {
 
 export default function Example({ category, products }) {
     const [selected, setSelected] = useState(category);
-    const [sorted, setSorted] = useState(products);
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState(products);
+    const [sorted, setSorted] = useState(items);
     const [isLoading, setLoading] = useState(false);
 
     const handleFilter = async () => {
@@ -68,7 +68,7 @@ export default function Example({ category, products }) {
         <>
             <Navigation />
             <div className="mt-16 flex justify-center items-center gap-5">
-                <List products={sorted} sorted={sorted} setSorted={setSorted} selected={selected} setSelected={setSelected} category={category} />
+                <List sorted={sorted} setSorted={setSorted} selected={selected} setSelected={setSelected} category={category} />
             </div>
             <div className="text-navigationColor text-center">
                 {isLoading ? <Loader /> : renderedCard}

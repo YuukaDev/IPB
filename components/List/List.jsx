@@ -9,7 +9,6 @@ function classNames(...classes) {
 const List = ({
   isLoading,
   category,
-  products,
   selected,
   setSelected,
   sorted,
