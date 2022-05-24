@@ -57,7 +57,7 @@ const ProductBox = ({ product, addToCart }) => {
   );
 };
 
-const AboutBox = ({ product, relatedProduct }) => {
+const AboutBox = ({ product }) => {
   return (
     <div className="w-2/4">
       <div className="mt-16">

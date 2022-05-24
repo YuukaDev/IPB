@@ -1,10 +1,14 @@
+import { useEffect, useState } from "react";
 import commerce from "../../lib/commerce";
+import { useRouter } from "next/router";
 
 import Navigation from "../../components/Navigation/Navigation";
 import Product from "../../components/ProductOverview/Product";
 import Footer from "../../components/Footer/Footer";
 import SlugCard from "../../components/ProductCard/SlugCard";
+import Spinner from "../../components/Spinner/Spinner";
 
+/*
 export async function getStaticPaths() {
     const { data: products } = await commerce.products.list();
 
@@ -31,19 +35,43 @@ export async function getStaticProps({ params }) {
         }
     }
 }
+*/
 
-export default function ProductPage({ product }) {
-    const addToCart = () => commerce.cart.add(product.id).then((response) => console.log(response));
-    console.log(product);
+export default function ProductPage() {
+    //const addToCart = () => commerce.cart.add(product.id).then((response) => console.log(response));
+    const router = useRouter();
+    const { permalink } = router.query;
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (!permalink) {
+            return;
+        }
+
+        const fetchProductByPermalink = async (permalink) => {
+            try {
+                const product = await commerce.products.retrieve(permalink, { type: 'permalink ' });
+                setProduct(product);
+                setLoading(false);
+            } catch (error) {
+                setLoading(false);
+            }
+        };
+
+        fetchProductByPermalink(permalink);
+    }, [permalink]);
+
+
+
+    if (loading) {
+        return <Spinner isLoading={loading} />
+    }
+
     return (
         <>
             <Navigation />
-            <Product addToCart={addToCart} product={product} relatedProduct={product.related_products} />
-            <div className="mt-5 mb-14 flex gap-5 justify-center items-center text-center">
-                {product.related_products.map((productItem) => (
-                    <SlugCard productItem={productItem} />
-                ))}
-            </div>
+            <Product product={product} />
             <Footer />
         </>
     )

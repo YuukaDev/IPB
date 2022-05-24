@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import logoImage from "../../images/logo_1.png";
+
 import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
 import { useCartState } from "../../utils/StoreContext";
 
