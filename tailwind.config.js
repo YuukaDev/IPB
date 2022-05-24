@@ -22,7 +22,8 @@ module.exports = {
         productBox: "400px",
         imageBox: "500px",
         video: "100%",
-        visualImage: "32.5%"
+        visualImage: "32.5%",
+        permalinkCard: "303px"
       },
       backgroundColor: {
         navigationBackground: "#F2F3F4",
