@@ -6,20 +6,20 @@ import List from "../components/List/List";
 import Card from "../components/ProductCard/Card";
 
 import GridLoader from "react-spinners/GridLoader";
+import useShop from "../utils/StoreContext";
 
 export async function getStaticProps() {
     const { data: category } = await commerce.categories.list();
-    const { data: products } = await commerce.products.list();
 
     return {
         props: {
-            products,
             category,
         }
     }
 }
 
-export default function Example({ category, products }) {
+export default function Example({ category }) {
+    const { products } = useShop();
     const [selected, setSelected] = useState(category);
     const [items, setItems] = useState(products);
     const [sorted, setSorted] = useState(items);
@@ -63,7 +63,6 @@ export default function Example({ category, products }) {
         </div>
     )
 
-
     return (
         <>
             <Navigation />
@@ -74,6 +73,5 @@ export default function Example({ category, products }) {
                 {isLoading ? <Loader /> : renderedCard}
             </div>
         </>
-
     )
 }
