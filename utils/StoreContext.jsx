@@ -1,32 +1,35 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
-
+import shopReducer, { initialState } from "./shopReducer";
 import commerce from "../lib/commerce";
 
-const CartStateContext = createContext();
-const CartDispatchContext = createContext();
+const ShopContext = createContext(initialState);
 
-const initialState = {
-  total_items: 0,
-  total_unique_items: 0,
-  line_items: [],
-};
-
-const reducer = (state, action) => {
-  const { type, payload } = action;
-  switch (type) {
-    case "SET_CART":
-      return { ...state, ...payload };
-    default:
-      throw new Error(`Unknown action: ${action.type}`);
-  }
-};
-
-export const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+export const ShopProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(shopReducer, initialState);
 
   useEffect(() => {
-    getCart();
+    getProducts();
   }, []);
+
+  const getProducts = async () => {
+    commerce.products.list().then((res) => {
+      dispatch({
+        type: "STORE_PRODUCTS",
+        payload: {
+          products: res.data,
+        },
+      });
+    });
+  };
+
+  const getCategory = async () => {
+    commerce.categories.list().then((res) => {
+      dispatch({
+        type: "STORE_CATEGORY",
+        payload: res.data,
+      });
+    });
+  };
 
   const setCart = (payload) => dispatch({ type: "SET_CART", payload });
 
@@ -40,14 +43,22 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  return (
-    <CartDispatchContext.Provider value={{ setCart }}>
-      <CartStateContext.Provider value={state}>
-        {children}
-      </CartStateContext.Provider>
-    </CartDispatchContext.Provider>
-  );
+  const value = {
+    total_items: state.tota_items,
+    products: state.products,
+    categories: state.categories,
+  };
+  return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
 };
 
-export const useCartState = () => useContext(CartStateContext);
-export const useCartDispatch = () => useContext(CartDispatchContext);
+const useShop = () => {
+  const context = useContext(ShopContext);
+
+  if (context === undefined) {
+    throw new Error("useShop must be used within ShopContext");
+  }
+
+  return context;
+};
+
+export default useShop;
