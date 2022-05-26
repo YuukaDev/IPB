@@ -1,6 +1,5 @@
 import { AboutBox } from "./AboutBox";
 import { ProductBox } from "./ProductBox";
-import Card from "../ProductCard/Card";
 
 export default function Product({ product, addToCart }) {
   return (

@@ -1,12 +1,23 @@
-import { Box, Stack, Heading, Flex, Link, HStack } from "@chakra-ui/react";
-import { useCartState } from "../utils/StoreContext";
-import { CartItems } from "../components/Cart/CartItems";
-import { CartOrderSummary } from "../components/Cart/CartOrderSummary";
+import { useState } from "react";
+import Image from "next/image";
+
 import Navigation from "../components/Navigation/Navigation";
+import Spinner from "../components/Spinner/Spinner";
+import { CartItem } from "../components/Cart/CartItem";
+
+import useShop from "../utils/StoreContext";
 
 export default function CartPage() {
-    const { line_items, subtotal, line_total } = useCartState();
+    const [loading, setLoading] = useState(false);
+    const { line_items, subtotal } = useShop();
+    console.log(line_items);
     const isEmpty = line_items.length === 0;
+    if (!line_items) {
+        setLoading(true);
+        return (
+            <Spinner isLoading={loading} />
+        )
+    }
 
     if (isEmpty) {
         return (
@@ -20,65 +31,12 @@ export default function CartPage() {
     return (
         <div>
             <Navigation />
-            <Box
-                maxW={{
-                    base: "3xl",
-                    lg: "7xl",
-                }}
-                mx="auto"
-                px={{
-                    base: "4",
-                    md: "8",
-                    lg: "12",
-                }}
-                py={{
-                    base: "6",
-                    md: "8",
-                    lg: "12",
-                }}
-            >
-                <Stack
-                    direction={{
-                        base: "column",
-                        lg: "row",
-                    }}
-                    align={{
-                        lg: "flex-start",
-                    }}
-                    spacing={{
-                        base: "8",
-                        md: "16",
-                    }}
-                >
-                    <Stack
-                        spacing={{
-                            base: "8",
-                            md: "10",
-                        }}
-                        flex="2"
-                    >
-                        <Heading fontSize="2xl" fontWeight="extrabold">
-                            Shopping Cart (
-                            {line_items.length > 1
-                                ? `${line_items.length} items`
-                                : `${line_items.length} item`}
-                            )
-                        </Heading>
-                        <Stack spacing="6">
-                            {line_items.map((item) => (
-                                <CartItems key={item.id} {...item} />
-                            ))}
-                        </Stack>
-                    </Stack>
-                    <Flex direction="column" align="center" flex="1">
-                        <CartOrderSummary subtotal={subtotal} line_total={subtotal} />
-                        <HStack mt="6" fontWeight="semibold">
-                            <p>or</p>
-                            <Link color="blue.500">Continue shopping</Link>
-                        </HStack>
-                    </Flex>
-                </Stack>
-            </Box>
+            <div className="mt-20">
+                {line_items.map((item) => (
+                    <CartItem key={item.id} {...item} />
+                ))}
+            </div>
+            <p>{subtotal.formatted_with_symbol}</p>
         </div>
     )
 }

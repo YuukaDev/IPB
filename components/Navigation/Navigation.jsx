@@ -1,12 +1,13 @@
+import { useEffect, useState } from "react";
+import commerce from "../../lib/commerce";
 import Image from "next/image";
 import Link from "next/link";
 import logoImage from "../../images/logo_1.png";
-
-import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
-import useShop from "../../utils/StoreContext";
+import useShop, { useCartDispatch } from "../../utils/StoreContext";
+import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function Navigation() {
-  const { line_items } = useShop();
+  const { total_items } = useShop();
   return (
     <nav className="sticky top-0 z-10 bg-navigationBackground">
       <div className="flex md:justify-between lg:justify-between sm:px-52 md:px-52 lg:px-52 md:p-3 sm:p-3 lg:p-3 items-center">
@@ -57,15 +58,15 @@ export default function Navigation() {
           </Link>
         </div>
         <div className="flex gap-3">
-          <Link href="/">
-            <a>
-              <AiOutlineSearch color="rgb(68, 68, 68)" fontSize="1.3em" />
+          <Link href="/cart">
+            <a className="flex">
+              <AiOutlineShoppingCart color="rgb(68, 68, 68)" fontSize="1.3em" />
+              <p className="text-xs">{`(${total_items})`}</p>
             </a>
           </Link>
           <Link href="/">
-            <a className="flex">
-              <AiOutlineShoppingCart color="rgb(68, 68, 68)" fontSize="1.3em" />
-              <p className="text-xs">{`(${line_items})`}</p>
+            <a>
+              <AiOutlineUser color="rgb(68, 68, 68)" fontSize="1.3em" />
             </a>
           </Link>
         </div>

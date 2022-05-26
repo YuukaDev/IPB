@@ -1,10 +1,12 @@
 export const initialState = {
   products: [],
   categories: [],
+  cart: [],
   checkout: {
     shippingOptions: [],
     checkoutTokenObject: {},
   },
+  subtotal: 0,
   total_items: 0,
   total_unique_items: 0,
   line_items: [],

@@ -3,12 +3,14 @@ import shopReducer, { initialState } from "./shopReducer";
 import commerce from "../lib/commerce";
 
 const ShopContext = createContext(initialState);
+const CartDispatchContext = createContext();
 
 export const ShopProvider = ({ children }) => {
   const [state, dispatch] = useReducer(shopReducer, initialState);
 
   useEffect(() => {
     getProducts();
+    getCart();
   }, []);
 
   const getProducts = async () => {
@@ -31,24 +33,30 @@ export const ShopProvider = ({ children }) => {
     });
   };
 
-  const setCart = (payload) => dispatch({ type: "SET_CART", payload });
+  const setCart = (payload) => dispatch({ type: "SET_CART", payload: payload });
 
   const getCart = async () => {
     try {
       const cart = await commerce.cart.retrieve();
-
       setCart(cart);
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   };
 
   const value = {
-    total_items: state.tota_items,
+    total_items: state.total_items,
+    line_items: state.line_items,
+    subtotal: state.subtotal,
     products: state.products,
     categories: state.categories,
   };
-  return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
+
+  return (
+    <CartDispatchContext.Provider value={{ setCart }}>
+      <ShopContext.Provider value={value}>{children}</ShopContext.Provider>
+    </CartDispatchContext.Provider>
+  );
 };
 
 const useShop = () => {
@@ -62,3 +70,4 @@ const useShop = () => {
 };
 
 export default useShop;
+export const useCartDispatch = () => useContext(CartDispatchContext);

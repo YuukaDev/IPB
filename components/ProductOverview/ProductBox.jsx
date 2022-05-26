@@ -29,7 +29,7 @@ export const ProductBox = ({ product, addToCart }) => {
         <div className="flex justify-center items-center">
           <button
             onClick={addToCart}
-            className="font-bold w-full bg-productButton rounded-3xl tracking-widest uppercase py-3 px-5 text-heroColor"
+            className="font-bold w-full bg-productButton rounded-3xl tracking-widest uppercase py-3 px-5 text-heroColor shadow-outline"
           >
             Add To Cart
           </button>
