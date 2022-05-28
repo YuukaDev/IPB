@@ -47,6 +47,8 @@ export const ShopProvider = ({ children }) => {
   const value = {
     total_items: state.total_items,
     line_items: state.line_items,
+    line_total: state.line_total,
+    total_unique_items: state.total_unique_items,
     subtotal: state.subtotal,
     products: state.products,
     categories: state.categories,
