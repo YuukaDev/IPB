@@ -1,5 +1,6 @@
 import commerce from "../../lib/commerce";
-import useShop, { useCartDispatch } from "../../utils/StoreContext";
+import { BsTrash } from "react-icons/bs";
+import { useCartDispatch } from "../../utils/StoreContext";
 
 export const CartItem = ({ image, id, name, price, quantity, line_total }) => {
   const { setCart } = useCartDispatch();
@@ -27,12 +28,15 @@ export const CartItem = ({ image, id, name, price, quantity, line_total }) => {
         <td>
           <div className="flex flex-col text-lg">
             <p className="text-left text-lg w-72 mb-2">{name}</p>
-            <a
-              onClick={removeItem}
-              className="cursor-pointer text-gray-700 font-bold text-xs text-left"
-            >
-              Remove
-            </a>
+            <div className="flex gap-1">
+              <a
+                onClick={removeItem}
+                className="cursor-pointer text-gray-700 font-bold text-xs text-left"
+              >
+                Remove
+              </a>
+              <BsTrash />
+            </div>
           </div>
         </td>
         <td className="text-center">
