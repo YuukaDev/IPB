@@ -1,7 +1,8 @@
+import Link from "next/link";
 import { useState } from "react";
-import Image from "next/image";
 
 import Navigation from "../components/Navigation/Navigation";
+import Footer from "../components/Footer/Footer";
 import Spinner from "../components/Spinner/Spinner";
 import { CartItem } from "../components/Cart/CartItem";
 
@@ -28,7 +29,7 @@ export default function CartPage() {
     }
 
     return (
-        <div>
+        <>
             <Navigation />
             <table className="flex justify-center items-center flex-col mt-20 gap-10">
                 {line_items.map((item) => (
@@ -40,10 +41,15 @@ export default function CartPage() {
                     <p className="text-center uppercase tracking-widest text-sm mb-3">Total -</p>
                     <span className="text-center uppercase tracking-widest text-sm">{subtotal.formatted_with_symbol}</span>
                 </div>
-                <button className="font-normal tracking-widest bg-black uppercase hover:bg-transparent hover:border-solid border border-black text-white hover:text-black py-3 px-5 transition-all">
-                    Checkout
-                </button>
+                <Link href="checkout">
+                    <button className="font-normal tracking-widest bg-black uppercase hover:bg-transparent hover:border-solid border border-black text-white hover:text-black py-3 px-5 transition-all">
+                        Checkout
+                    </button>
+                </Link>
             </div>
-        </div>
+            <div className="mt-80">
+                <Footer />
+            </div>
+        </>
     )
 }
