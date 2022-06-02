@@ -1,39 +1,28 @@
-import { useState } from "react";
-import Card from "../components/ProductCard/Card";
-import commerce from "../lib/commerce";
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
-export async function getStaticProps() {
-    const { data: category } = await commerce.categories.list();
-    const { data: products } = await commerce.products.list({
-        category_slug: [category.name]
-    });
+export default function Test() {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => console.log(data);
+    console.log(errors);
 
-    return {
-        props: {
-            products,
-            category,
-        }
-    }
-}
-
-export default function App({ products, category }) {
-    const [items, setItems] = useState(products);
     return (
-        <div>
-            <div className="text-navigationColor text-center">
-                <div className="flex justify-center items-center gap-8 mt-10">
-                    {category.map((categories) => (
-                        <div key={categories.id}>
-                            <button onClick={(e) => setItems(e.target.value)}>{categories.name}</button>
-                        </div>
-                    ))}
-                </div>
-                <div className="mt-16 inline-grid md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-8">
-                    {items.map((product) => (
-                        <Card key={product.id} product={product} />
-                    ))}
-                </div>
-            </div>
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <input type="text" placeholder="First name" {...register("First name", { required: true, maxLength: 80 })} />
+            <input type="text" placeholder="Last name" {...register("Last name", { required: true, maxLength: 100 })} />
+            <input type="text" placeholder="Email" {...register("Email", { required: true, pattern: /^\S+@\S+$/i })} />
+            <input type="tel" placeholder="Mobile number" {...register("Mobile number", { required: true, minLength: 6, maxLength: 12 })} />
+            <select {...register("Title", { required: true })}>
+                <option value="Mr">Mr</option>
+                <option value="Mrs">Mrs</option>
+                <option value="Miss">Miss</option>
+                <option value="Dr">Dr</option>
+            </select>
+
+            <input {...register("Developer", { required: true })} type="radio" value="Yes" />
+            <input {...register("Developer", { required: true })} type="radio" value="No" />
+
+            <input type="submit" />
+        </form>
     );
 }

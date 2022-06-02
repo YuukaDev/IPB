@@ -17,6 +17,8 @@ const shopReducer = (state, action) => {
   switch (type) {
     case "SET_CART":
       return { ...state, ...payload };
+    case "STORE_CART":
+      return { ...state, cart: payload.cart };
     case "STORE_PRODUCTS":
       return {
         ...state,
@@ -26,6 +28,11 @@ const shopReducer = (state, action) => {
       return {
         ...state,
         categories: payload.categories,
+      };
+    case "SET_CHECKOUT":
+      return {
+        ...state,
+        ...payload,
       };
     default:
       throw new Error(`Unknown action: ${action.type}`);

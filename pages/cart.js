@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 import Navigation from "../components/Navigation/Navigation";
@@ -9,6 +9,7 @@ import { CartItem } from "../components/Cart/CartItem";
 import useShop from "../utils/StoreContext";
 
 export default function CartPage() {
+    const router = useRouter();
     const [loading, setLoading] = useState(false);
     const { line_items, subtotal } = useShop();
     const isEmpty = line_items.length === 0;
@@ -41,11 +42,9 @@ export default function CartPage() {
                     <p className="text-center uppercase tracking-widest text-sm mb-3">Total -</p>
                     <span className="text-center uppercase tracking-widest text-sm">{subtotal.formatted_with_symbol}</span>
                 </div>
-                <Link href="checkout">
-                    <button className="font-normal tracking-widest bg-black uppercase hover:bg-transparent hover:border-solid border border-black text-white hover:text-black py-3 px-5 transition-all">
-                        Checkout
-                    </button>
-                </Link>
+                <button onClick={() => router.push("/checkout")} className="font-normal tracking-widest bg-black uppercase hover:bg-transparent hover:border-solid border border-black text-white hover:text-black py-3 px-5 transition-all">
+                    Checkout
+                </button>
             </div>
             <div className="mt-80">
                 <Footer />

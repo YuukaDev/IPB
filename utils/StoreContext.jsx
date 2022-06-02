@@ -7,6 +7,7 @@ const CartDispatchContext = createContext();
 
 export const ShopProvider = ({ children }) => {
   const [state, dispatch] = useReducer(shopReducer, initialState);
+  const setCart = (payload) => dispatch({ type: "SET_CART", payload: payload });
 
   useEffect(() => {
     getProducts();
@@ -14,26 +15,19 @@ export const ShopProvider = ({ children }) => {
   }, []);
 
   const getProducts = async () => {
-    commerce.products.list().then((res) => {
-      dispatch({
-        type: "STORE_PRODUCTS",
-        payload: {
-          products: res.data,
-        },
+    try {
+      commerce.products.list().then((res) => {
+        dispatch({
+          type: "STORE_PRODUCTS",
+          payload: {
+            products: res.data,
+          },
+        });
       });
-    });
+    } catch (err) {
+      return console.log(err.message);
+    }
   };
-
-  const getCategory = async () => {
-    commerce.categories.list().then((res) => {
-      dispatch({
-        type: "STORE_CATEGORY",
-        payload: res.data,
-      });
-    });
-  };
-
-  const setCart = (payload) => dispatch({ type: "SET_CART", payload: payload });
 
   const getCart = async () => {
     try {
@@ -44,7 +38,35 @@ export const ShopProvider = ({ children }) => {
     }
   };
 
+  const storeCart = async () => {
+    try {
+      commerce.cart.retrieve().then((res) => {
+        dispatch({
+          type: "STORE_CART",
+          payload: {
+            cart: res,
+          },
+        });
+      });
+    } catch (err) {
+      return console.log(err.message);
+    }
+  };
+
+  const generateToken = async (cartId) => {
+    if (!cartId) return;
+    try {
+      const payload = await commerce.checkout.generateToken(cartId, {
+        type: "cart",
+      });
+      dispatch({ type: "SET_CHECKOUT", payload });
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   const value = {
+    cart: state.cart,
     total_items: state.total_items,
     line_items: state.line_items,
     line_total: state.line_total,
@@ -52,6 +74,7 @@ export const ShopProvider = ({ children }) => {
     subtotal: state.subtotal,
     products: state.products,
     categories: state.categories,
+    generateToken,
   };
 
   return (

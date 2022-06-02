@@ -20,6 +20,7 @@ export default function ProductPage() {
     const [loading, setLoading] = useState(true);
     const addToCart = () => commerce.cart.add(product.id).then(({ cart }) => setCart(cart));
 
+
     const fetchProductByPermalink = async (permalink) => {
         try {
             const product = await commerce.products.retrieve(permalink, { type: 'permalink ' });
