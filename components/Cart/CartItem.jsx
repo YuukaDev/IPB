@@ -40,9 +40,12 @@ export const CartItem = ({ image, id, name, price, quantity, line_total }) => {
           </div>
         </td>
         <td className="text-center">
-          <span className="text-lg font-semibold">
-            {price.formatted_with_symbol}
-          </span>
+          <div className="flex flex-col">
+            <span className="text-lg font-semibold">
+              {price.formatted_with_symbol}
+            </span>
+            <span className="text-sm text-gray-500 font-semibold">{`( Price )`}</span>
+          </div>
         </td>
         <td className="justify-center items-center">
           <div className="flex justify-center items-center gap-3">
@@ -64,9 +67,12 @@ export const CartItem = ({ image, id, name, price, quantity, line_total }) => {
           </div>
         </td>
         <td className="text-center">
-          <span className="text-lg font-semibold">
-            {line_total.formatted_with_symbol}
-          </span>
+          <div className="flex flex-col">
+            <span className="text-lg font-semibold">
+              {line_total.formatted_with_symbol}
+            </span>
+            <span className="text-sm text-gray-500 font-semibold">{`( Subtotal )`}</span>
+          </div>
         </td>
       </tr>
     </tbody>
