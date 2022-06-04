@@ -2,28 +2,10 @@ import commerce from "../../lib/commerce";
 import { BsTrash } from "react-icons/bs";
 import { useCartDispatch } from "../../utils/StoreContext";
 
-export default function CheckoutItems({
-  image,
-  id,
-  name,
-  price,
-  quantity,
-  line_total,
-}) {
+export default function CheckoutItems({ image, id, name, price }) {
   const { setCart } = useCartDispatch();
   const handleUpdateCart = ({ cart }) => setCart(cart);
   const removeItem = () => commerce.cart.remove(id).then(handleUpdateCart);
-
-  const decrementQuantity = () => {
-    quantity > 1
-      ? commerce.cart
-          .update(id, { quantity: quantity - 1 })
-          .then(handleUpdateCart)
-      : removeItem();
-  };
-
-  const incrementQuantity = () =>
-    commerce.cart.update(id, { quantity: quantity + 1 }).then(handleUpdateCart);
 
   return (
     <div>

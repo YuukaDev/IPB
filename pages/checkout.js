@@ -3,33 +3,60 @@ import commerce from "../lib/commerce";
 import Navigation from "../components/Navigation/Navigation";
 import CheckoutForm from "../components/Checkout/CheckoutForm";
 import useShop from "../utils/StoreContext";
+import { useForm } from "react-hook-form";
 
 export default function Checkout() {
-    const { line_items, cart, products } = useShop();
-    const [checkout, setCheckout] = useState([]);
+    const { cart } = useShop();
+    const [token, setToken] = useState(null);
+    const {
+        register,
+        handleSubmit,
+    } = useForm();
 
-    console.log(cart);
+    useEffect(() => {
+        if (cart.id) {
+            const generateToken = async () => {
+                try {
+                    const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
 
-    const captureToken = async () => {
-        try {
-            const tokenId = await commerce.checkout.generateToken(cart.id, {
-                type: "cart"
-            });
+                    setToken(token);
+                } catch {
+                    if (activeStep !== steps.length) history.push('/');
+                }
+            };
 
-        } catch (err) {
-            return console.log(err.message);
+            generateToken();
         }
-    }
+    }, [cart]);
 
-    const captureOrder = async () => {
-        commerce.checkout.capture(checkout, line_items).then((response) => console.log(response))
+    function captureCheckout() {
+        commerce.checkout.capture(token.id, {
+            customer: {
+                firstname: register,
+                lastname: register,
+                email: register
+            },
+            payment: {
+                gateway: "test_gateway",
+                card: {
+                    number: '4242424242424242',
+                    expiry_month: '02',
+                    expiry_year: '24',
+                    cvc: '123',
+                    postal_zip_code: '94107',
+                },
+            }
+        }).then((order) => {
+            console.log(order);
+        }).catch((err) => {
+            console.log(err);
+        })
     }
 
     return (
         <div>
             <Navigation />
-            <CheckoutForm />
-            <button onClick={captureOrder}>Click</button>
+            <CheckoutForm handleSubmit={captureCheckout} register={register} />
         </div>
     )
 }

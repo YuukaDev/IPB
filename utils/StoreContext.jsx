@@ -12,6 +12,7 @@ export const ShopProvider = ({ children }) => {
   useEffect(() => {
     getProducts();
     getCart();
+    storeCart();
   }, []);
 
   const getProducts = async () => {
@@ -96,4 +97,3 @@ const useShop = () => {
 
 export default useShop;
 export const useCartDispatch = () => useContext(CartDispatchContext);
-
