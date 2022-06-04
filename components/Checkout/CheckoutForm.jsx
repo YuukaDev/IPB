@@ -1,17 +1,9 @@
-import { useForm } from "react-hook-form";
 import useShop from "../../utils/StoreContext";
-import { useRouter } from "next/router";
 import CheckoutItems from "./CheckoutItems";
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ register, handleSubmit }) {
   const { line_items, subtotal } = useShop();
   const isEmpty = line_items.length === 0;
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
 
   if (isEmpty) {
     return <div>Your cart is empty go shop!</div>;
@@ -19,7 +11,13 @@ export default function CheckoutForm() {
 
   return (
     <div className="flex justify-center items-center gap-20 mt-32">
-      <form className="w-full max-w-lg" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="w-full max-w-lg"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit
+        }}
+      >
         <h1 className="mb-5 text-lg tracking-wide">Billing adress</h1>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -67,7 +65,10 @@ export default function CheckoutForm() {
               id="email-adress"
               type="text"
               placeholder="you@domain.com"
-              {...register("Email", { required: true, pattern: /^\S+@\S+$/i })}
+              {...register("Email", {
+                required: true,
+                pattern: /^\S+@\S+$/i,
+              })}
             />
           </div>
         </div>
@@ -104,7 +105,7 @@ export default function CheckoutForm() {
           <div className="p-3">
             <hr className="w-full mt-3" />
             <div className="mt-5 flex items-center justify-between">
-              <h1 className="text-md">Subtotal</h1>
+              <h1 className="text-lg tracking-wide">Subtotal</h1>
               <span className="text-lg font-semibold">
                 {subtotal.formatted_with_symbol}
               </span>
