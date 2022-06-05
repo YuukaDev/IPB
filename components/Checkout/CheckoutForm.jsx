@@ -1,7 +1,8 @@
+import PaypalCheckoutButton from "./PaypalCheckoutButton";
 import useShop from "../../utils/StoreContext";
 import CheckoutItems from "./CheckoutItems";
 
-export default function CheckoutForm({ register, handleSubmit }) {
+export default function CheckoutForm({ register }) {
   const { line_items, subtotal } = useShop();
   const isEmpty = line_items.length === 0;
 
@@ -9,15 +10,14 @@ export default function CheckoutForm({ register, handleSubmit }) {
     return <div>Your cart is empty go shop!</div>;
   }
 
+  const product = {
+    description: "Learn how to build a website with React JS",
+    price: 29,
+  };
+
   return (
     <div className="flex justify-center items-center gap-20 mt-32">
-      <form
-        className="w-full max-w-lg"
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSubmit
-        }}
-      >
+      <form className="w-full max-w-lg">
         <h1 className="mb-5 text-lg tracking-wide">Billing adress</h1>
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -72,30 +72,7 @@ export default function CheckoutForm({ register, handleSubmit }) {
             />
           </div>
         </div>
-        <h1 className="mb-5">Payment methods</h1>
-        <div className="flex justify-start items-start gap-3 md:w-1/2 px-3 ">
-          <input type="radio" {...register("Developer", { required: true })} />
-          <label className="tracking-wide text-gray-700 text-xs font-bold mb-2">
-            Credit / debit card
-          </label>
-        </div>
-        <div className="flex justify-start items-start gap-3 md:w-1/2 px-3 ">
-          <input type="radio" {...register("Developer", { required: true })} />
-          <label className="tracking-wide text-gray-700 text-xs font-bold mb-2">
-            Paypal
-          </label>
-        </div>
-        <div className="flex justify-start items-start gap-3 md:w-1/2 px-3 ">
-          <input type="radio" {...register("Developer", { required: true })} />
-          <label className="tracking-wide text-gray-700 text-xs font-bold mb-2">
-            Paysafecard
-          </label>
-        </div>
-        <input
-          value={`Pay ${subtotal.formatted_with_symbol} by PAYPAL`}
-          type="submit"
-          className="w-full mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        ></input>
+        <PaypalCheckoutButton product={product} />
       </form>
       <div>
         <div className="flex flex-col gap-5 shadow-2xl rounded-2xl p-5 h-highlight min-h-max">
