@@ -20,7 +20,6 @@ export default function ProductPage() {
     const [loading, setLoading] = useState(true);
     const addToCart = () => commerce.cart.add(product.id).then(({ cart }) => setCart(cart));
 
-
     const fetchProductByPermalink = async (permalink) => {
         try {
             const product = await commerce.products.retrieve(permalink, { type: 'permalink ' });
@@ -54,7 +53,7 @@ export default function ProductPage() {
             <Product addToCart={addToCart} product={product} />
             <div className="mt-5 mb-14 flex gap-5 justify-center items-center text-center">
                 {product.related_products.map((productItem) => (
-                    <SlugCard productItem={productItem} />
+                    <SlugCard key={productItem.id} productItem={productItem} />
                 ))}
             </div>
             <Footer />
