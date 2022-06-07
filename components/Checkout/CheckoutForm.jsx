@@ -1,8 +1,12 @@
+import { useState } from "react";
 import PaypalCheckoutButton from "./PaypalCheckoutButton";
 import useShop from "../../utils/StoreContext";
 import CheckoutItems from "./CheckoutItems";
 
 export default function CheckoutForm({ register }) {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const { line_items, subtotal } = useShop();
   const isEmpty = line_items.length === 0;
 
@@ -14,6 +18,8 @@ export default function CheckoutForm({ register }) {
     description: "Learn how to build a website with React JS",
     price: 29,
   };
+
+  console.log(firstName, lastName, email);
 
   return (
     <div className="flex justify-center items-center gap-20 mt-32">
@@ -33,7 +39,8 @@ export default function CheckoutForm({ register }) {
               id="grid-first-name"
               type="text"
               placeholder="John"
-              {...register("First name", { required: true, maxLength: 80 })}
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
@@ -49,7 +56,8 @@ export default function CheckoutForm({ register }) {
               id="grid-last-name"
               type="text"
               placeholder="Doe"
-              {...register("Last name", { required: true, maxLength: 100 })}
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
           <div className="w-full px-3">
@@ -65,10 +73,8 @@ export default function CheckoutForm({ register }) {
               id="email-adress"
               type="text"
               placeholder="you@domain.com"
-              {...register("Email", {
-                required: true,
-                pattern: /^\S+@\S+$/i,
-              })}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
         </div>

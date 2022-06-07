@@ -1,22 +1,19 @@
 import { useState, useEffect } from "react";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 import commerce from "../../lib/commerce";
 import useShop from "../../utils/StoreContext";
 
-export default function PaypalCheckoutButton({ product }) {
+export default function PaypalCheckoutButton() {
   const { cart } = useShop();
-  const [token, setToken] = useState(null);
-
+  const [token, setToken] = useState([]);
   const [paidFor, setPaidFor] = useState(false);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const value = token.live?.total.raw;
 
   if (paidFor) {
     alert("Thank you for your purchase!");
   }
 
-  if (error) {
-    alert(error);
-  }
   const handleApprove = (orderID) => {
     setPaidFor(true);
   };
@@ -30,7 +27,9 @@ export default function PaypalCheckoutButton({ product }) {
           });
 
           setToken(token);
+          setLoading(false);
         } catch (err) {
+          setLoading(true);
           console.log(err);
         }
       };
@@ -39,58 +38,104 @@ export default function PaypalCheckoutButton({ product }) {
     }
   }, [cart]);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <PayPalScriptProvider>
-      <PayPalButtons
-        onClick={(data, actions) => {
-          // Validate on button click, client or server side
-          const hasAlreadyBoughtCourse = false;
-
-          if (hasAlreadyBoughtCourse) {
-            setError(
-              "You already bought this course. Go to your account to view your list of courses."
-            );
-
-            return actions.reject();
-          } else {
-            return actions.resolve();
-          }
-        }}
-        createOrder={(data, actions) => {
-          return actions.order.create({
-            purchase_units: [
-              {
-                amount: {
-                  value: product.price,
-                },
-              },
-            ],
-          });
-        }}
-        onApprove={async (data, actions) => {
-          const order = await commerce.checkout.capture(token.id, {
-            payment: {
-              gateway: "paypal",
-              paypal: {
-                action: "capture",
-                payment_id: "PAY-51028384J84281644LGFZXJQ",
-                payer_id: "VE57TQRTVER5Y",
+    <PayPalButtons
+      onClick={(data, actions) => {
+        const hasAlreadyBoughtCourse = false;
+        if (hasAlreadyBoughtCourse) {
+          setError("You Already bough this course");
+          return actions.reject();
+        } else {
+          return actions.resolve();
+        }
+      }}
+      createOrder={(data, actions) => {
+        return actions.order.create({
+          purchase_units: [
+            {
+              amount: {
+                value: value,
               },
             },
-          });
-          console.log("order", order);
+          ],
+        });
+      }}
+      onApprove={async (data, action) => {
+        const order = await action.order.capture();
+        console.log("order", order);
 
-          handleApprove(data.orderID);
-        }}
-        onCancel={() => {
-          // Display cancel message, modal or redirect user to cancel page or back to cart
-        }}
-        onError={(err) => {
-          setError(err);
-          console.error("PayPal Checkout onError", err);
-        }}
-      />
-      ;
-    </PayPalScriptProvider>
+        handleApprove(data.orderID);
+      }}
+      onCancel={() => {}}
+      onError={(err) => {
+        setError(err);
+        console.log("PayPal Checkout onError", err);
+      }}
+    />
   );
 }
+
+/*
+  async function captureOrder() {
+    try {
+      const order = await commerce.checkout.capture(token.id, {
+        payment: {
+          gateway: "paypal",
+          paypal: {
+            action: "capture",
+            payment_id: "PAY-51028384J84281644LGFZXJQ",
+            payer_id: "VE57TQRTVER5Y",
+          },
+        },
+      });
+
+      // If we get here, the order has been successfully captured and the order detail is part of the `order` variable
+      console.log(order);
+      return;
+    } catch (response) {
+      // There was an issue capturing the order with Commerce.js
+      console.log(response);
+      alert(response.message);
+      return;
+    } finally {
+      // Any loading state can be removed here.
+    }
+  }
+
+ onClick={(data, actions) => {
+                const hasAlreadyBoughtCourse = false;
+                if(hasAlreadyBoughtCourse){
+                    setError("You Already bough this course");
+                    return actions.reject();
+                }else{
+                    return actions.resolve();
+                }
+            }}
+            createOrder = {(data, actions) => {
+                return actions.order.create({
+                    purchase_units: [
+                        {
+                            description: product.description,
+                            amount: {
+                                value: product.price,
+                            },
+                        },
+                    ],
+                });
+            }}
+            onApprove = { async (data, action) => {
+                const order = await action.order.capture();
+                console.log("order", order);
+
+                handleApprove(data.orderID);
+            }}
+            onCancel={() => {}}
+            onError={(err) => {
+                setError(err);
+                console.log("PayPal Checkout onError", err);
+            }}
+*/

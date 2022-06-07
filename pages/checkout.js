@@ -7,7 +7,7 @@ import CheckoutForm from "../components/Checkout/CheckoutForm";
 import useShop from "../utils/StoreContext";
 
 export default function Checkout() {
-    const { cart, line_items } = useShop();
+    const { cart } = useShop();
     const [token, setToken] = useState(null);
     const { register } = useForm();
 
