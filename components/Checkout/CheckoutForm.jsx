@@ -19,7 +19,7 @@ export default function CheckoutForm({ register }) {
     price: 29,
   };
 
-  console.log(firstName, lastName, email);
+  const captureOrder = () => {};
 
   return (
     <div className="flex justify-center items-center gap-20 mt-32">

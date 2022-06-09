@@ -62,7 +62,7 @@ export default function Navigation() {
               <p className="text-xs">{`(${total_unique_items})`}</p>
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/login">
             <a>
               <AiOutlineUser color="rgb(68, 68, 68)" fontSize="1.3em" />
             </a>

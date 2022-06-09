@@ -23,22 +23,31 @@ export default function Example({ category }) {
     const [selected, setSelected] = useState(category);
     const [items, setItems] = useState(products);
     const [sorted, setSorted] = useState(items);
+    const [searched, setSearched] = useState("");
     const [isLoading, setLoading] = useState(false);
+    const recipesInput = "recipesInput";
 
     const handleFilter = async () => {
         try {
-            setLoading(true);
+            if (selected) {
 
-            const product = await commerce.products.list({
-                category_slug: selected.slug
-            });
+                setLoading(true);
 
-            setItems(product.data);
-            setLoading(false);
+                const product = await commerce.products.list({
+                    category_slug: selected.slug
+                });
+
+                setItems(product.data);
+                setLoading(false);
+            }
         } catch (err) {
             setLoading(false);
             console.log(err.message);
         }
+    }
+
+    const onChange = (e) => {
+        setSearched(e.target.value);
     }
 
     useEffect(() => {
@@ -56,7 +65,13 @@ export default function Example({ category }) {
     const renderedCard = (
         <div className="mt-16 inline-grid md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-8">
             {
-                items.map((product) => (
+                items.filter((val) => {
+                    if (searched == "") {
+                        return val;
+                    } else if (val.name.toLowerCase().includes(searched.toLowerCase())) {
+                        return val;
+                    }
+                }).map((product) => (
                     <Card isLoading={isLoading} key={product.id} product={product} />
                 ))
             }
@@ -67,7 +82,7 @@ export default function Example({ category }) {
         <>
             <Navigation />
             <div className="mt-16 flex justify-center items-center gap-5">
-                <List sorted={sorted} setSorted={setSorted} selected={selected} setSelected={setSelected} category={category} />
+                <List onChange={onChange} recipesInput={recipesInput} sorted={sorted} setSorted={setSorted} selected={selected} setSelected={setSelected} category={category} />
             </div>
             <div className="text-navigationColor text-center">
                 {isLoading ? <Loader /> : renderedCard}
