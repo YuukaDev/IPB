@@ -14,7 +14,8 @@ module.exports = {
         hero: "100%",
         productBox: "300px",
         imageBox: "300px",
-        productHero: "120vh"
+        productHero: "120vh",
+        loginH: "75vh"
       },
       width: {
         highlight: "63%",
@@ -34,17 +35,20 @@ module.exports = {
         productButton: "#d63d00"
       },
       colors: {
+        productButton: "#d63d00",
         navigationColor: "rgb(68, 68, 68)",
         heroColor: "rgb(255, 255, 255)",
         footer: "rgb(106, 106, 106)",
         logoGreen: "#34de01",
-        lighterGreen: "#85ff60"
+        lighterGreen: "#85ff60",
+        login: "rgb(27, 19, 60)"
       },
       fontSize: {
         navigationlink: "1em",
         aboutUs: "1.2em",
         aboutParagraph: "1em",
-        footerFont: "15px"
+        footerFont: "15px",
+        login: "20px"
       },
       letterSpacing: {
         heroWide: "3px"
@@ -68,6 +72,9 @@ module.exports = {
       },
       gap: {
         footer: "10px"
+      },
+      letterSpacing: {
+        login: "4px"
       }
     },
   },

@@ -1,51 +1,68 @@
+import { useState } from "react";
+
+import Image from "next/image";
+import Link from "next/link";
+
+import sonicImage from "../../images/sonic.png";
+
 export default function Login() {
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  console.log(loginEmail, loginPassword);
+
   return (
-    <div className="h-landingHero flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="mb-20 h-loginH flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <Image width={300} height={300} src={sonicImage} />
+      <div className="max-w-md w-full">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
-          </h2>
+          <h1 className="mt-6 uppercase tracking-login text-center text-login">
+            Login In Your Account
+          </h1>
+          <p className="text-center text-sm mt-7 mb-7">
+            Please enter your e-mail and password
+          </p>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form action="#" method="POST">
           <input type="hidden" name="remember" defaultValue="true" />
-          <div className="flex flex-col gap-5 rounded-md shadow-sm -space-y-px">
+          <div className="flex flex-col gap-5">
             <div>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
               <input
+                required
+                onChange={(e) => setLoginEmail(e.target.value)}
                 id="email-address"
                 name="email"
                 type="email"
                 autoComplete="email"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="Email address"
               />
             </div>
             <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
               <input
+                required
+                onChange={(e) => setLoginPassword(e.target.value)}
                 id="password"
                 name="password"
                 type="password"
-                autoComplete="current-password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                autoComplete="password"
+                className="w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="Password"
               />
             </div>
           </div>
           <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Sign in
+            <button className="w-full mt-5 font-normal tracking-widest bg-productButton uppercase hover:bg-transparent hover:border-solid border border-productButton text-white hover:text-black py-3 px-5 transition-all">
+              Sign In
             </button>
+          </div>
+          <div>
+            <p className="text-center text-gray-500 mt-5 text-sm">
+              Don't have an account?{" "}
+              <Link href="/register">
+                <a className="hover:text-gray-600 transition-all">Create one</a>
+              </Link>
+            </p>
           </div>
         </form>
       </div>

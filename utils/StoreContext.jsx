@@ -1,6 +1,11 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
 import shopReducer, { initialState } from "./shopReducer";
 import commerce from "../lib/commerce";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../lib/firebase";
 
 const ShopContext = createContext(initialState);
 const CartDispatchContext = createContext();
@@ -66,6 +71,37 @@ export const ShopProvider = ({ children }) => {
     }
   };
 
+  const registerUser = async ({ registerEmail, registerPassword }) => {
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPassword
+      );
+      dispatch({
+        type: "SET_CUSTOMER",
+        payload: {
+          customer: user,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const loginUser = async ({ loginEmail, loginPassword }) => {
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
+      console.log(user);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const value = {
     cart: state.cart,
     total_items: state.total_items,
@@ -76,6 +112,8 @@ export const ShopProvider = ({ children }) => {
     products: state.products,
     categories: state.categories,
     generateToken,
+    registerUser,
+    loginUser,
   };
 
   return (
