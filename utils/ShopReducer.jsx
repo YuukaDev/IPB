@@ -38,7 +38,7 @@ const shopReducer = (state, action) => {
     case "SET_CUSTOMER":
       return {
         ...state,
-        customer: payload.customer,
+        cart: payload.cart,
       };
     default:
       throw new Error(`Unknown action: ${action.type}`);

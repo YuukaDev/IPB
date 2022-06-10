@@ -1,11 +1,8 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
 import shopReducer, { initialState } from "./shopReducer";
 import commerce from "../lib/commerce";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
 import { auth } from "../lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 const ShopContext = createContext(initialState);
 const CartDispatchContext = createContext();
@@ -13,11 +10,16 @@ const CartDispatchContext = createContext();
 export const ShopProvider = ({ children }) => {
   const [state, dispatch] = useReducer(shopReducer, initialState);
   const setCart = (payload) => dispatch({ type: "SET_CART", payload: payload });
+  const setCustomer = (payload) =>
+    dispatch({ type: "SET_CUSTOMER", payload: { customer: payload } });
 
   useEffect(() => {
     getProducts();
     getCart();
     storeCart();
+    auth.onAuthStateChanged((currentUser) => {
+      setCustomer(currentUser);
+    });
   }, []);
 
   const getProducts = async () => {
@@ -71,25 +73,7 @@ export const ShopProvider = ({ children }) => {
     }
   };
 
-  const registerUser = async ({ registerEmail, registerPassword }) => {
-    try {
-      const user = await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      );
-      dispatch({
-        type: "SET_CUSTOMER",
-        payload: {
-          customer: user,
-        },
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const loginUser = async ({ loginEmail, loginPassword }) => {
+  const loginUser = async ({ loginEmail = "", loginPassword = "" }) => {
     try {
       const user = await signInWithEmailAndPassword(
         auth,
@@ -111,13 +95,13 @@ export const ShopProvider = ({ children }) => {
     subtotal: state.subtotal,
     products: state.products,
     categories: state.categories,
+    customer: state.customer,
     generateToken,
-    registerUser,
     loginUser,
   };
 
   return (
-    <CartDispatchContext.Provider value={{ setCart }}>
+    <CartDispatchContext.Provider value={{ setCart, setCustomer }}>
       <ShopContext.Provider value={value}>{children}</ShopContext.Provider>
     </CartDispatchContext.Provider>
   );

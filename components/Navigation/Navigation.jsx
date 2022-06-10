@@ -1,11 +1,16 @@
+import useShop from "../../utils/StoreContext";
+
 import Image from "next/image";
 import Link from "next/link";
+
 import logoImage from "../../images/logo_1.png";
-import useShop from "../../utils/StoreContext";
 import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function Navigation() {
-  const { total_unique_items } = useShop();
+  const { total_unique_items, customer } = useShop();
+
+  console.log(customer);
+
   return (
     <nav className="sticky top-0 z-10 bg-navigationBackground">
       <div className="flex md:justify-between lg:justify-between sm:px-52 md:px-52 lg:px-52 md:p-3 sm:p-3 lg:p-3 items-center">
@@ -63,8 +68,9 @@ export default function Navigation() {
             </a>
           </Link>
           <Link href="/login">
-            <a>
+            <a className="flex">
               <AiOutlineUser color="rgb(68, 68, 68)" fontSize="1.3em" />
+              <p className="text-xs">{customer?.email}</p>
             </a>
           </Link>
         </div>
