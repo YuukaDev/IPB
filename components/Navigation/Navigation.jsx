@@ -1,4 +1,9 @@
+import { useState, useEffect } from "react";
+
 import useShop from "../../utils/StoreContext";
+import db, { auth } from "../../lib/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -8,8 +13,11 @@ import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function Navigation() {
   const { total_unique_items, customer } = useShop();
+  const [user, loading] = useAuthState(auth);
 
-  console.log(customer);
+  useEffect(() => {
+    if (loading) return;
+  }, [user, loading]);
 
   return (
     <nav className="sticky top-0 z-10 bg-navigationBackground">
@@ -70,7 +78,7 @@ export default function Navigation() {
           <Link href="/login">
             <a className="flex">
               <AiOutlineUser color="rgb(68, 68, 68)" fontSize="1.3em" />
-              <p className="text-xs">{customer?.email}</p>
+              <p className="text-xs">{`(${customer.name})`}</p>
             </a>
           </Link>
         </div>

@@ -1,8 +1,9 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
 import shopReducer, { initialState } from "./shopReducer";
 import commerce from "../lib/commerce";
-import { auth } from "../lib/firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import db, { auth } from "../lib/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const ShopContext = createContext(initialState);
 const CartDispatchContext = createContext();
@@ -12,15 +13,14 @@ export const ShopProvider = ({ children }) => {
   const setCart = (payload) => dispatch({ type: "SET_CART", payload: payload });
   const setCustomer = (payload) =>
     dispatch({ type: "SET_CUSTOMER", payload: { customer: payload } });
+  const [user] = useAuthState(auth);
 
   useEffect(() => {
     getProducts();
     getCart();
     storeCart();
-    auth.onAuthStateChanged((currentUser) => {
-      setCustomer(currentUser);
-    });
-  }, []);
+    fetchUser();
+  }, [user]);
 
   const getProducts = async () => {
     try {
@@ -73,16 +73,15 @@ export const ShopProvider = ({ children }) => {
     }
   };
 
-  const loginUser = async ({ loginEmail = "", loginPassword = "" }) => {
+  const fetchUser = async () => {
     try {
-      const user = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      console.log(user);
+      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+      const doc = await getDocs(q);
+      const data = doc.docs[0].data();
+
+      setCustomer(data);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -97,7 +96,6 @@ export const ShopProvider = ({ children }) => {
     categories: state.categories,
     customer: state.customer,
     generateToken,
-    loginUser,
   };
 
   return (

@@ -1,17 +1,16 @@
 import { useState } from "react";
-import useShop from "../../utils/StoreContext";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../lib/firebase";
+import db, { auth } from "../../lib/firebase";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 import sonicImage from "../../images/sonic.png";
+import { addDoc, collection } from "firebase/firestore";
 
 export default function Register() {
   const router = useRouter();
-  const { customer } = useShop();
   const [displayName, setName] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -19,21 +18,25 @@ export default function Register() {
 
   const registerUser = async () => {
     try {
-      const user = await createUserWithEmailAndPassword(
+      const res = await createUserWithEmailAndPassword(
         auth,
-        displayName,
         registerEmail,
         registerPassword
       );
-      setLoading(false);
+      const user = res.user;
+      await addDoc(collection(db, "users"), {
+        uid: user.uid,
+        name: displayName,
+        authProvider: "local",
+        registerEmail,
+      });
       router.push("/");
+      setLoading(false);
     } catch (err) {
       console.log(err);
       setLoading(true);
     }
   };
-
-  console.log(customer);
 
   const handleSubmit = (e) => {
     e.preventDefault();

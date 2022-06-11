@@ -10,7 +10,7 @@ export const initialState = {
   total_items: 0,
   total_unique_items: 0,
   line_items: [],
-  customer: {},
+  customer: [],
 };
 
 const shopReducer = (state, action) => {
@@ -36,10 +36,7 @@ const shopReducer = (state, action) => {
         ...payload,
       };
     case "SET_CUSTOMER":
-      return {
-        ...state,
-        cart: payload.cart,
-      };
+      return { ...state, customer: payload.customer };
     default:
       throw new Error(`Unknown action: ${action.type}`);
   }

@@ -2,14 +2,38 @@ import { useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import sonicImage from "../../images/sonic.png";
 
+import { auth } from "../../lib/firebase";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
+
 export default function Login() {
+  const router = useRouter();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  console.log(loginEmail, loginPassword);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(loginEmail, loginPassword);
+  };
+
+  if (user) {
+    return router.push("/");
+  }
+
+  if (error) {
+    console.log(error.message);
+  }
+
+  const logOut = () => {
+    signOut(auth);
+  };
 
   return (
     <div className="mb-20 h-loginH flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -23,7 +47,7 @@ export default function Login() {
             Please enter your e-mail and password
           </p>
         </div>
-        <form action="#" method="POST">
+        <form onSubmit={handleSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="flex flex-col gap-5">
             <div>
@@ -52,7 +76,10 @@ export default function Login() {
             </div>
           </div>
           <div>
-            <button className="w-full mt-5 font-normal tracking-widest bg-productButton uppercase hover:bg-transparent hover:border-solid border border-productButton text-white hover:text-black py-3 px-5 transition-all">
+            <button
+              type="submit"
+              className="w-full mt-5 font-normal tracking-widest bg-productButton uppercase hover:bg-transparent hover:border-solid border border-productButton text-white hover:text-black py-3 px-5 transition-all"
+            >
               Sign In
             </button>
           </div>
@@ -65,6 +92,7 @@ export default function Login() {
             </p>
           </div>
         </form>
+        <button onClick={logOut}>Sign Out</button>
       </div>
     </div>
   );
