@@ -14,15 +14,15 @@ const List = ({
   sorted,
   setSorted,
   handleChange,
-  onChange
+  onChange,
 }) => {
   return (
     <>
       <div className="w-52">
         <Listbox disabled={isLoading} value={selected} onChange={setSelected}>
           <>
-            <div className="mt-1 relative">
-              <Listbox.Button className="relative w-full bg-white border-2 border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 hover:border-2 hover:border-logoGreen text-left cursor-default sm:text-sm">
+            <div className="mt-1 cusror-pointer relative">
+              <Listbox.Button className="relative w-full bg-white border-2 border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 hover:border-2 hover:border-logoGreen text-left sm:text-sm">
                 <span className="flex items-center">
                   <span className="ml-3 block truncate">All Genres</span>
                 </span>
@@ -39,7 +39,7 @@ const List = ({
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+                <Listbox.Options className="cursor-pointer absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
                   {category.map((person) => (
                     <Listbox.Option
                       key={person.id}
@@ -104,7 +104,7 @@ const List = ({
         <Listbox value={sorted} onChange={setSorted}>
           <>
             <div className="mt-1 relative">
-              <Listbox.Button className="relative w-full bg-white border-2 border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 hover:border-2 hover:border-logoGreen text-left cursor-default sm:text-sm">
+              <Listbox.Button className="cursor-pointer relative w-full bg-white border-2 border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 hover:border-2 hover:border-logoGreen text-left sm:text-sm">
                 <span className="flex items-center">
                   <span className="ml-3 block truncate">Sort By</span>
                 </span>
@@ -121,7 +121,7 @@ const List = ({
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+                <Listbox.Options className="cursor-pointer absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
                   <Listbox.Option className="hover:bg-lighterGreen text-gray-900 select-none relative py-2 pl-3 pr-9">
                     <>
                       <div className="flex items-center">

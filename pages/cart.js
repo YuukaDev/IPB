@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Navigation from "../components/Navigation/Navigation";
 import Footer from "../components/Footer/Footer";
@@ -11,8 +11,15 @@ import useShop from "../utils/StoreContext";
 export default function CartPage() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
-    const { line_items, subtotal } = useShop();
+    const { line_items, subtotal, customer } = useShop();
     const isEmpty = line_items.length === 0;
+
+    useEffect(() => {
+        if (!customer.name) {
+            router.push("/login");
+        }
+    }, [])
+
     if (!line_items) {
         setLoading(true);
         return (

@@ -1,16 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import db, { auth } from "../../lib/firebase";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import useShop from "../../utils/StoreContext";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 import sonicImage from "../../images/sonic.png";
 import { addDoc, collection } from "firebase/firestore";
+import { useForm } from "react-hook-form";
 
 export default function Register() {
   const router = useRouter();
+  const { customer } = useShop();
+  const schema = yup.object({
+    name: yup.string().required(),
+    email: yup.string().required(),
+    password: yup.string().min(8).max(32).required(),
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   const [displayName, setName] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -30,7 +47,6 @@ export default function Register() {
         authProvider: "local",
         registerEmail,
       });
-      router.push("/");
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -38,14 +54,18 @@ export default function Register() {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmitForm = () => {
     registerUser(registerEmail, registerPassword);
   };
 
+  useEffect(() => {
+    if (customer.name) {
+      router.push("/");
+    }
+  }, []);
+
   return (
     <div className="mb-20 h-loginH flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <Image width={300} height={300} src={sonicImage} />
       <div className="max-w-md w-full">
         <div>
           <h1 className="mt-6 uppercase tracking-login text-center text-login">
@@ -55,43 +75,49 @@ export default function Register() {
             Please fill in the information below:
           </p>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(handleSubmitForm)}>
           <div className="flex flex-col gap-5">
             <div>
               <input
-                required
+                {...register("name")}
                 onChange={(e) => setName(e.target.value)}
                 id="name"
-                name="name"
                 type="text"
                 autoComplete="name"
                 className="w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="Name"
               />
+              <p className="mt-2 ml-2 text-xs text-red-500">
+                {errors.name?.message}
+              </p>
             </div>
             <div>
               <input
-                required
+                {...register("email")}
                 onChange={(e) => setRegisterEmail(e.target.value)}
                 id="email-address"
-                name="email"
                 type="email"
                 autoComplete="email"
                 className="w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="Email address"
               />
+              <p className="mt-2 ml-2 text-xs text-red-500">
+                {errors.email?.message}
+              </p>
             </div>
             <div>
               <input
-                required
+                {...register("password")}
                 onChange={(e) => setRegisterPassword(e.target.value)}
                 id="password"
-                name="password"
                 type="password"
                 autoComplete="password"
                 className="w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 placeholder="Password"
               />
+              <p className="mt-2 ml-2 text-xs text-red-500">
+                {errors.password?.message}
+              </p>
             </div>
           </div>
           <div>

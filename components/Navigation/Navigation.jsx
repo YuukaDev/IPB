@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import useShop from "../../utils/StoreContext";
-import db, { auth } from "../../lib/firebase";
+
 import { useAuthState } from "react-firebase-hooks/auth";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { auth } from "../../lib/firebase";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -78,7 +78,9 @@ export default function Navigation() {
           <Link href="/login">
             <a className="flex">
               <AiOutlineUser color="rgb(68, 68, 68)" fontSize="1.3em" />
-              <p className="text-xs">{`(${customer.name})`}</p>
+              <p className="text-xs">
+                {!customer.name ? "" : `(${customer.name})`}
+              </p>
             </a>
           </Link>
         </div>
