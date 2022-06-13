@@ -4,12 +4,9 @@ import commerce from "../../lib/commerce";
 import useShop from "../../utils/StoreContext";
 import GridLoader from "react-spinners/GridLoader";
 
-export default function PaypalCheckoutButton() {
+export default function PaypalCheckoutButton({ value, captureCheckout }) {
   const { cart } = useShop();
-  const [token, setToken] = useState([]);
   const [paidFor, setPaidFor] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const value = token.live?.total.raw;
 
   if (paidFor) {
     alert("Thank you for your purchase!");
@@ -18,74 +15,6 @@ export default function PaypalCheckoutButton() {
   const handleApprove = (orderID) => {
     setPaidFor(true);
   };
-
-  const captureCheckout = () => {
-    commerce.checkout
-      .capture(token.id, {
-        customer: {
-          firstname: "John",
-          lastname: "Doe",
-          email: "buyer@example.com",
-        },
-        shipping: {
-          name: "John Doe",
-          country: "US",
-          street: "123 Fake St",
-          town_city: "San Francisco",
-          county_state: "CA",
-          postal_zip_code: "94103",
-        },
-        fulfillment: {
-          shipping_method: "ship_7RyWOwmK5nEa2V",
-        },
-        billing: {
-          name: "John Doe",
-          country: "US",
-          street: "123 Fake St",
-          town_city: "San Francisco",
-          county_state: "CA",
-          postal_zip_code: 94103,
-        },
-        payment: {
-          gateway: "paypal",
-          paypal: {
-            action: "authorize",
-          },
-        },
-      })
-      .then((resp) => {
-        console.log(resp);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    if (cart.id) {
-      const generateToken = async () => {
-        try {
-          const token = await commerce.checkout.generateToken(cart.id, {
-            type: "cart",
-          });
-
-          setToken(token);
-          setLoading(false);
-        } catch (err) {
-          setLoading(true);
-          console.log(err);
-        }
-      };
-
-      generateToken();
-    }
-  }, [cart]);
-
-  if (loading) {
-    return (
-      <GridLoader margin={20} color="#34de01" loading={loading} size={20} />
-    );
-  }
 
   return (
     <PayPalButtons

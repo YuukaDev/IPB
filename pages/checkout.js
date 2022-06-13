@@ -1,18 +1,39 @@
 import commerce from "../lib/commerce";
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
 
 import Navigation from "../components/Navigation/Navigation";
 import CheckoutForm from "../components/Checkout/CheckoutForm";
 import useShop from "../utils/StoreContext";
 
 export default function Checkout() {
-    const { register } = useForm();
+    const { cart } = useShop();
+    const [token, setToken] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (cart.id) {
+            const generateToken = async () => {
+                try {
+                    const token = await commerce.checkout.generateToken(cart.id, {
+                        type: "cart",
+                    });
+
+                    setToken(token);
+                    setLoading(false);
+                } catch (err) {
+                    setLoading(true);
+                    console.log(err);
+                }
+            };
+
+            generateToken();
+        }
+    }, [cart]);
 
     return (
         <div>
             <Navigation />
-            <CheckoutForm register={register} />
+            <CheckoutForm loading={loading} token={token} />
         </div>
     )
 }
