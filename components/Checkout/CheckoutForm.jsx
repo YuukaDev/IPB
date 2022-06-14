@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import commerce from "../../lib/commerce";
-import PaypalCheckoutButton from "./PaypalCheckoutButton";
 import useShop from "../../utils/StoreContext";
 import CheckoutItems from "./CheckoutItems";
 import GridLoader from "react-spinners/GridLoader";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 
-export default function CheckoutForm({ token, loading }) {
+export default function CheckoutForm({ token, loading, setLoading }) {
   const { line_items, subtotal } = useShop();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [data, setData] = useState([]);
+  const [paidFor, setPaidFor] = useState(false);
   const isEmpty = line_items.length === 0;
   const value = token.live?.total.raw;
 
@@ -17,9 +20,17 @@ export default function CheckoutForm({ token, loading }) {
     return <div>Your cart is empty go shop!</div>;
   }
 
-  const captureCheckout = () => {
-    commerce.checkout
-      .capture(token.id, {
+  if (paidFor) {
+    alert("Thank you for your purchase!");
+  }
+
+  const handleApprove = (orderID) => {
+    setPaidFor(true);
+  };
+
+  const getPaypalId = async () => {
+    try {
+      const paypalAuth = await commerce.checkout.capture(token.id, {
         customer: {
           firstname: "John",
           lastname: "Doe",
@@ -50,6 +61,53 @@ export default function CheckoutForm({ token, loading }) {
             action: "authorize",
           },
         },
+      });
+      setData(paypalAuth);
+      setLoading(false);
+    } catch (err) {
+      setLoading(true);
+    }
+  };
+
+  const captureCheckout = (payerID) => {
+    commerce.checkout
+      .capture(token.id, {
+        line_items: token.live_line_items,
+        conditionals: {
+          collects_billing_address: true,
+        },
+        customer: {
+          firstname: firstName,
+          lastname: lastName,
+          email: email,
+        },
+        shipping: {
+          name: `${firstName} ${lastName}`,
+          country: "US",
+          street: "123 Fake St",
+          town_city: "San Francisco",
+          county_state: "CA",
+          postal_zip_code: "94103",
+        },
+        fulfillment: {
+          shipping_method: "ship_1ypbroE658n4ea",
+        },
+        billing: {
+          name: `${firstName} ${lastName}`,
+          country: "US",
+          street: "123 Fake St",
+          town_city: "San Francisco",
+          county_state: "CA",
+          postal_zip_code: "94103",
+        },
+        payment: {
+          gateway: "paypal",
+          paypal: {
+            action: "capture",
+            payment_id: data.payment_id,
+            payer_id: payerID,
+          },
+        },
       })
       .then((resp) => {
         console.log(resp);
@@ -64,6 +122,8 @@ export default function CheckoutForm({ token, loading }) {
       <GridLoader margin={20} color="#34de01" loading={loading} size={20} />
     );
   }
+
+  console.log(lastName);
 
   return (
     <div className="flex justify-center items-center gap-20 mt-32">
@@ -122,7 +182,39 @@ export default function CheckoutForm({ token, loading }) {
             />
           </div>
         </div>
-        <PaypalCheckoutButton value={value} captureCheckout={captureCheckout} />
+        <PayPalButtons
+          onClick={(data, actions) => {
+            const hasAlreadyBoughtCourse = false;
+            if (hasAlreadyBoughtCourse) {
+              setError("You Already bough this course");
+              return actions.reject();
+            } else {
+              actions.resolve();
+            }
+          }}
+          createOrder={(data, actions) => {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  amount: {
+                    value: value,
+                  },
+                },
+              ],
+            });
+          }}
+          onApprove={async (data, action) => {
+            const order = await action.order.capture();
+
+            captureCheckout(data.payerID);
+            handleApprove(data.orderID);
+          }}
+          onCancel={() => {}}
+          onError={(err) => {
+            setError(err);
+            console.log("PayPal Checkout onError", err);
+          }}
+        />
       </form>
       <div>
         <div className="flex flex-col gap-5 shadow-2xl rounded-2xl p-5 h-highlight min-h-max">

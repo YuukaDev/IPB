@@ -9,6 +9,7 @@ export default function Checkout() {
     const { cart } = useShop();
     const [token, setToken] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [paymentData, setPaymentData] = useState([]);
 
     useEffect(() => {
         if (cart.id) {
@@ -33,7 +34,7 @@ export default function Checkout() {
     return (
         <div>
             <Navigation />
-            <CheckoutForm loading={loading} token={token} />
+            <CheckoutForm setLoading={setLoading} loading={loading} token={token} />
         </div>
     )
 }
