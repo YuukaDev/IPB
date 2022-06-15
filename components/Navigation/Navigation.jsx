@@ -16,21 +16,27 @@ import {
   AiOutlineShoppingCart,
   AiOutlineSearch,
 } from "react-icons/ai";
-import AutocompleteContainer from "./Autocomplete";
 
 export default function Navigation() {
-  const { total_unique_items, customer, products } = useShop();
+  const { total_unique_items, customer } = useShop();
   const [user, loading] = useAuthState(auth);
   const [loadingItem, setLoading] = useState(true);
   const [searched, setSearched] = useState("");
+  const [products, setProducts] = useState([]);
   const router = useRouter();
 
   const fetchProducts = async (query) => {
     try {
       const data = await commerce.products.list({
-        query: JSON.stringify(searched),
+        query: query,
       });
-      setLoading(false);
+
+      setProducts(data.data);
+      if (products.name) {
+        setLoading(false);
+      } else {
+        setLoading(true);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -40,10 +46,6 @@ export default function Navigation() {
     if (loading) return;
     fetchProducts(searched);
   }, [user, loading]);
-
-  if (loadingItem) {
-    return <h1>Loading...</h1>;
-  }
 
   return (
     <nav className="sticky top-0 z-10 bg-navigationBackground">
@@ -120,7 +122,13 @@ export default function Navigation() {
             <div className="transition-all absolute inset-y-0 pl-2 mt-1">
               <AiOutlineSearch color="rgb(68, 68, 68)" fontSize="1.3em" />
             </div>
-            <AutocompleteContainer />
+            <div>
+              {products.map((product) => (
+                <div>
+                  {loadingItem ? <h1>Loading...</h1> : <h1>{product.name}</h1>}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
