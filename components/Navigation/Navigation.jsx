@@ -1,23 +1,49 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import commerce from "../../lib/commerce";
 
 import useShop from "../../utils/StoreContext";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../lib/firebase";
+import { useRouter } from "next/router";
 
 import Image from "next/image";
 import Link from "next/link";
 
 import logoImage from "../../images/logo_1.png";
-import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
+import {
+  AiOutlineUser,
+  AiOutlineShoppingCart,
+  AiOutlineSearch,
+} from "react-icons/ai";
+import AutocompleteContainer from "./Autocomplete";
 
 export default function Navigation() {
-  const { total_unique_items, customer } = useShop();
+  const { total_unique_items, customer, products } = useShop();
   const [user, loading] = useAuthState(auth);
+  const [loadingItem, setLoading] = useState(true);
+  const [searched, setSearched] = useState("");
+  const router = useRouter();
+
+  const fetchProducts = async (query) => {
+    try {
+      const data = await commerce.products.list({
+        query: JSON.stringify(searched),
+      });
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     if (loading) return;
+    fetchProducts(searched);
   }, [user, loading]);
+
+  if (loadingItem) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <nav className="sticky top-0 z-10 bg-navigationBackground">
@@ -83,6 +109,19 @@ export default function Navigation() {
               </p>
             </a>
           </Link>
+          <div className="relative">
+            <input
+              type="text"
+              value={searched}
+              onSubmit={() => router.push(`/products/${searched}`)}
+              onChange={(e) => setSearched(e.target.value)}
+              className="cursor-pointer transition-all relative z-10 h-7 w-5 rounded-full bg-transparent pl-8 outline-none focus:w-full focus:border focus:border-black focus:pr-5 focus:py-4"
+            />
+            <div className="transition-all absolute inset-y-0 pl-2 mt-1">
+              <AiOutlineSearch color="rgb(68, 68, 68)" fontSize="1.3em" />
+            </div>
+            <AutocompleteContainer />
+          </div>
         </div>
       </div>
     </nav>

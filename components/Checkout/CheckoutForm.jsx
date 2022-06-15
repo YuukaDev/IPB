@@ -24,7 +24,7 @@ export default function CheckoutForm({ token, loading, setLoading }) {
     alert("Thank you for your purchase!");
   }
 
-  const handleApprove = (orderID) => {
+  const handleApprove = (orderID, paymentID) => {
     setPaidFor(true);
   };
 
@@ -69,20 +69,16 @@ export default function CheckoutForm({ token, loading, setLoading }) {
     }
   };
 
-  const captureCheckout = (payerID) => {
+  const captureCheckout = (paymentID, payerID) => {
     commerce.checkout
       .capture(token.id, {
-        line_items: token.live_line_items,
-        conditionals: {
-          collects_billing_address: true,
-        },
         customer: {
-          firstname: firstName,
-          lastname: lastName,
-          email: email,
+          firstname: "John",
+          lastname: "Doe",
+          email: "buyer@example.com",
         },
         shipping: {
-          name: `${firstName} ${lastName}`,
+          name: "John Doe",
           country: "US",
           street: "123 Fake St",
           town_city: "San Francisco",
@@ -90,21 +86,21 @@ export default function CheckoutForm({ token, loading, setLoading }) {
           postal_zip_code: "94103",
         },
         fulfillment: {
-          shipping_method: "ship_1ypbroE658n4ea",
+          shipping_method: "ship_7RyWOwmK5nEa2V",
         },
         billing: {
-          name: `${firstName} ${lastName}`,
+          name: "John Doe",
           country: "US",
           street: "123 Fake St",
           town_city: "San Francisco",
           county_state: "CA",
-          postal_zip_code: "94103",
+          postal_zip_code: 94103,
         },
         payment: {
           gateway: "paypal",
           paypal: {
             action: "capture",
-            payment_id: data.payment_id,
+            payment_id: paymentID,
             payer_id: payerID,
           },
         },
@@ -122,8 +118,6 @@ export default function CheckoutForm({ token, loading, setLoading }) {
       <GridLoader margin={20} color="#34de01" loading={loading} size={20} />
     );
   }
-
-  console.log(lastName);
 
   return (
     <div className="flex justify-center items-center gap-20 mt-32">
@@ -206,7 +200,7 @@ export default function CheckoutForm({ token, loading, setLoading }) {
           onApprove={async (data, action) => {
             const order = await action.order.capture();
 
-            captureCheckout(data.payerID);
+            captureCheckout(data?.paymentID, data?.payerID);
             handleApprove(data.orderID);
           }}
           onCancel={() => {}}

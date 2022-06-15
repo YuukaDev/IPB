@@ -7,6 +7,7 @@ import "swiper/css/bundle";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import '@algolia/autocomplete-theme-classic';
 
 function MyApp({ Component, pageProps }) {
   const payPalKey = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
