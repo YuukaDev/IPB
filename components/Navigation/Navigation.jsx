@@ -1,50 +1,23 @@
-import { useEffect, useState } from "react";
-import commerce from "../../lib/commerce";
+import { useEffect } from "react";
 
 import useShop from "../../utils/StoreContext";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../lib/firebase";
-import { useRouter } from "next/router";
 
 import Image from "next/image";
 import Link from "next/link";
 
 import logoImage from "../../images/logo_1.png";
-import {
-  AiOutlineUser,
-  AiOutlineShoppingCart,
-  AiOutlineSearch,
-} from "react-icons/ai";
+import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
+import Modal from "../Modal/Modal";
 
 export default function Navigation() {
   const { total_unique_items, customer } = useShop();
   const [user, loading] = useAuthState(auth);
-  const [loadingItem, setLoading] = useState(true);
-  const [searched, setSearched] = useState("");
-  const [products, setProducts] = useState([]);
-  const router = useRouter();
-
-  const fetchProducts = async (query) => {
-    try {
-      const data = await commerce.products.list({
-        query: query,
-      });
-
-      setProducts(data.data);
-      if (products.name) {
-        setLoading(false);
-      } else {
-        setLoading(true);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   useEffect(() => {
     if (loading) return;
-    fetchProducts(searched);
   }, [user, loading]);
 
   return (
@@ -71,7 +44,7 @@ export default function Navigation() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all group-hover:w-full"></span>
             </a>
           </Link>
-          <Link href="#hottest">
+          <Link href="/#hottest">
             <a className="relative opacity-70 hover:opacity-100 transition-all group">
               <p>Hottest</p>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all group-hover:w-full"></span>
@@ -111,25 +84,7 @@ export default function Navigation() {
               </p>
             </a>
           </Link>
-          <div className="relative">
-            <input
-              type="text"
-              value={searched}
-              onSubmit={() => router.push(`/products/${searched}`)}
-              onChange={(e) => setSearched(e.target.value)}
-              className="cursor-pointer transition-all relative z-10 h-7 w-5 rounded-full bg-transparent pl-8 outline-none focus:w-full focus:border focus:border-black focus:pr-5 focus:py-4"
-            />
-            <div className="transition-all absolute inset-y-0 pl-2 mt-1">
-              <AiOutlineSearch color="rgb(68, 68, 68)" fontSize="1.3em" />
-            </div>
-            <div>
-              {products.map((product) => (
-                <div>
-                  {loadingItem ? <h1>Loading...</h1> : <h1>{product.name}</h1>}
-                </div>
-              ))}
-            </div>
-          </div>
+          <Modal />
         </div>
       </div>
     </nav>
