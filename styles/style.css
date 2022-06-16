@@ -38,20 +38,6 @@ hr {
   border: 1px solid gray;
 }
 
-.gallery-up {
-  width: 30%;
-  height: auto;
-}
-
-.gallery-up img {
-  width: 100%;
-}
-
-.gallery-down {
-  height: auto;
-  width: 30%;
-}
-
 td,
 th {
   border: none;

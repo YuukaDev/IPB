@@ -1,5 +1,6 @@
 import { ShopProvider } from "../utils/StoreContext";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { UserProvider } from "@auth0/nextjs-auth0";
 
 import "../styles/style.css";
 import "swiper/css";
@@ -13,9 +14,11 @@ function MyApp({ Component, pageProps }) {
   const payPalKey = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
   return (
     <PayPalScriptProvider options={{ "client-id": payPalKey }}>
-      <ShopProvider>
-        <Component {...pageProps} />
-      </ShopProvider>
+      <UserProvider>
+        <ShopProvider>
+          <Component {...pageProps} />
+        </ShopProvider>
+      </UserProvider>
     </PayPalScriptProvider>
   )
 }

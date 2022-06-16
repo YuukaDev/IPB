@@ -5,7 +5,10 @@ import { FiTwitter, FiInstagram, FiFacebook } from "react-icons/fi";
 export default function Footer() {
   return (
     <>
-      <div id="footer" className="flex text-navigationColor p-footer justify-center items-center gap-64">
+      <div
+        id="footer"
+        className="flex text-navigationColor p-footer justify-center items-center gap-64"
+      >
         <div>
           <h1 className="uppercase tracking-widest text-sm">About Us</h1>
           <div className="flex opacity-70 tracking-wide text-footerFont w-footer flex-col mt-2 gap-footer">
@@ -17,16 +20,16 @@ export default function Footer() {
           </div>
         </div>
         <div>
-          <Link href="/products">
+          <a href="/products">
             <h1 className="cursor-pointer uppercase text-sm">Buy</h1>
-          </Link>
+          </a>
           <div className="flex tracking-wide text-footerFont flex-col mt-2 gap-footer">
             <Link href="/" passHref>
               <a className="opacity-70 hover:opacity-100 transition-all group">
                 How to buy
               </a>
             </Link>
-            <Link href="/" passHref>
+            <Link href="/products" passHref>
               <a className="opacity-70 hover:opacity-100 transition-all group">
                 Games List
               </a>
@@ -39,7 +42,9 @@ export default function Footer() {
           </div>
         </div>
         <div>
-          <h1 className="uppercase text-sm">Help</h1>
+          <a href="/help">
+            <h1 className="uppercase text-sm">Help</h1>
+          </a>
           <div className="flex tracking-wide text-footerFont flex-col mt-2 gap-footer">
             <Link href="/" passHref>
               <a className="opacity-70 hover:opacity-100 transition-all group">
