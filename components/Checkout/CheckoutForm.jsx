@@ -1,17 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import commerce from "../../lib/commerce";
 import useShop from "../../utils/StoreContext";
 import CheckoutItems from "./CheckoutItems";
 import GridLoader from "react-spinners/GridLoader";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 
-export default function CheckoutForm({ token, loading, setLoading }) {
+export default function CheckoutForm({
+  token,
+  loading,
+  setLoading,
+  paymentID,
+}) {
   const { line_items, subtotal } = useShop();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState("");
   const [paidFor, setPaidFor] = useState(false);
   const isEmpty = line_items.length === 0;
   const value = token.live?.total.raw;
@@ -28,48 +33,7 @@ export default function CheckoutForm({ token, loading, setLoading }) {
     setPaidFor(true);
   };
 
-  const getPaypalId = async () => {
-    try {
-      const paypalAuth = await commerce.checkout.capture(token.id, {
-        customer: {
-          firstname: "John",
-          lastname: "Doe",
-          email: "buyer@example.com",
-        },
-        shipping: {
-          name: "John Doe",
-          country: "US",
-          street: "123 Fake St",
-          town_city: "San Francisco",
-          county_state: "CA",
-          postal_zip_code: "94103",
-        },
-        fulfillment: {
-          shipping_method: "ship_7RyWOwmK5nEa2V",
-        },
-        billing: {
-          name: "John Doe",
-          country: "US",
-          street: "123 Fake St",
-          town_city: "San Francisco",
-          county_state: "CA",
-          postal_zip_code: 94103,
-        },
-        payment: {
-          gateway: "paypal",
-          paypal: {
-            action: "authorize",
-          },
-        },
-      });
-      setData(paypalAuth);
-      setLoading(false);
-    } catch (err) {
-      setLoading(true);
-    }
-  };
-
-  const captureCheckout = (paymentID, payerID) => {
+  const captureCheckout = (payerID) => {
     commerce.checkout
       .capture(token.id, {
         customer: {
@@ -200,7 +164,7 @@ export default function CheckoutForm({ token, loading, setLoading }) {
           onApprove={async (data, action) => {
             const order = await action.order.capture();
 
-            captureCheckout(data?.paymentID, data?.payerID);
+            captureCheckout(data?.payerID);
             handleApprove(data.orderID);
           }}
           onCancel={() => {}}

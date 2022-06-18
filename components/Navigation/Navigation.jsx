@@ -2,15 +2,15 @@ import { useEffect } from "react";
 
 import useShop from "../../utils/StoreContext";
 
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../lib/firebase";
-
 import Image from "next/image";
 import Link from "next/link";
 
-import logoImage from "../../images/logo_1.png";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../lib/firebase";
 import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
-import Modal from "../Modal/Modal";
+
+import logoImage from "../../images/logo_1.png";
+import Search from "../Search/Search";
 
 export default function Navigation() {
   const { total_unique_items, customer } = useShop();
@@ -84,7 +84,9 @@ export default function Navigation() {
               </p>
             </a>
           </Link>
-          <Modal />
+          <div>
+            <Search />
+          </div>
         </div>
       </div>
     </nav>

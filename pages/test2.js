@@ -1,13 +1,21 @@
-import Search from "../components/Navigation/Search";
-import Navigation from "../components/Navigation/Navigation";
-import Modal from "../components/Modal/Modal";
+import { useState } from "react";
+import useShop from "../utils/StoreContext";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import { AiOutlineSearch } from "react-icons/ai";
 
 export default function Test2() {
+    const { products } = useShop();
+    const [isOpen, setIsOpen] = useState(false);
     return (
-        <div style={{
-            height: "200vh"
-        }}>
-            <Modal />
+        <div>
+            {isOpen ?
+                <div onMouseLeave={() => setIsOpen(false)}>
+                    <ReactSearchAutocomplete
+                        items={products}
+                    />
+                </div> :
+                <AiOutlineSearch onClick={() => setIsOpen(true)} />
+            }
         </div>
     )
 }
