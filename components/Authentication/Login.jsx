@@ -9,6 +9,7 @@ import sonicImage from "../../images/sonic.png";
 import { auth } from "../../lib/firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
+import Profile from "./Profile";
 
 export default function Login() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function Login() {
   };
 
   if (user) {
-    return router.push("/");
+    router.push("/");
   }
 
   if (error) {
@@ -87,12 +88,13 @@ export default function Login() {
             <p className="text-center text-gray-500 mt-5 text-sm">
               Don't have an account?{" "}
               <Link href="/register">
-                <a className="hover:text-gray-600 transition-all">Create one</a>
+                <a className="hover:text-gray-600 transition-all font-bold">
+                  Create one
+                </a>
               </Link>
             </p>
           </div>
         </form>
-        <button onClick={logOut}>Sign Out</button>
       </div>
     </div>
   );

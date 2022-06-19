@@ -22,7 +22,7 @@ export default function Navigation() {
 
   return (
     <nav className="sticky top-0 z-10 bg-navigationBackground">
-      <div className="flex md:justify-between lg:justify-between sm:px-52 md:px-52 lg:px-52 md:p-3 sm:p-3 lg:p-3 items-center">
+      <div className="flex md:justify-between lg:justify-between sm:px-52 md:px-52 lg:px-52 md:p-3 sm:p-3 lg:p-3 items-center font-semibold">
         <div>
           <a className="hidden lg:flex" aria-label="Home" href="/">
             <Image src={logoImage} alt="logo" width="90" height="50" />

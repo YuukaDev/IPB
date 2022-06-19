@@ -5,14 +5,9 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Metrophobic&display=swap");
 
-@layer base {
-  html {
-    font-family: "Metrophobic", sans-serif;
-  }
-}
-
 * {
   scroll-behavior: smooth;
+  font-family: "Metrophobic", sans-serif;
 }
 
 body {

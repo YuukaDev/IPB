@@ -13,9 +13,11 @@ export default function Footer() {
           <h1 className="uppercase tracking-widest text-sm">About Us</h1>
           <div className="flex opacity-70 tracking-wide text-footerFont w-footer flex-col mt-2 gap-footer">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-              expedita explicabo cumque adipisci, deleniti sit at numquam
-              laborum debitis eveniet.
+              We have been a company that has been selling cheap accounts for
+              many years. We have a bunch of satisfied customers behind us. The
+              orders we sell are exclusively full access and are made by our
+              team. If you have a problem with your purchase, please contact our
+              24/7 support
             </p>
           </div>
         </div>
