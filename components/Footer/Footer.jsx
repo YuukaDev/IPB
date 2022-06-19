@@ -42,9 +42,11 @@ export default function Footer() {
           </div>
         </div>
         <div>
-          <a href="/help">
-            <h1 className="uppercase text-sm">Help</h1>
-          </a>
+          <Link href="/help" passHref>
+            <a>
+              <h1 className="uppercase text-sm">Help</h1>
+            </a>
+          </Link>
           <div className="flex tracking-wide text-footerFont flex-col mt-2 gap-footer">
             <Link href="/" passHref>
               <a className="opacity-70 hover:opacity-100 transition-all group">

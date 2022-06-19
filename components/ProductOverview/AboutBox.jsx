@@ -20,20 +20,23 @@ export const AboutBox = ({ product }) => {
         <h1 className="uppercase tracking-widest text-lg mb-3">Visuals</h1>
         <div>
           <video className="w-video rounded-2xl" controls={true}>
-            <source src={product.assets[5].url} />
+            <source alt={product.name} src={product.assets[5].url} />
           </video>
           <div className="w-visualImage select-none flex gap-3 mt-5">
             <img
+              alt={product.name}
               onClick={openModal}
               className="cursor-pointer rounded-2xl"
               src={product.assets[2].url}
             />
             <img
+              alt={product.name}
               onClick={openModal}
               className="cursor-pointer rounded-2xl"
               src={product.assets[3].url}
             />
             <img
+              alt={product.name}
               onClick={openModal}
               className="cursor-pointer rounded-2xl"
               src={product.assets[4].url}

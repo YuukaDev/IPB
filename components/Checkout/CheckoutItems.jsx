@@ -10,7 +10,7 @@ export default function CheckoutItems({ image, id, name, price }) {
   return (
     <div>
       <div className="flex p-3 gap-10 justify-center items-center">
-        <img src={image.url} className="w-44 rounded" />
+        <img alt={name} src={image.url} className="w-44 rounded" />
         <p className="w-40">{name}</p>
         <div className="flex justify-center items-center flex-col">
           <span className="text-lg font-semibold">
