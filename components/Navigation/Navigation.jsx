@@ -13,7 +13,7 @@ import logoImage from "../../images/logo_1.png";
 import Search from "../Search/Search";
 
 export default function Navigation() {
-  const { total_unique_items, customer } = useShop();
+  const { total_items, customer } = useShop();
   const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function Navigation() {
           <Link href="/cart">
             <a className="flex">
               <AiOutlineShoppingCart color="rgb(68, 68, 68)" fontSize="1.3em" />
-              <p className="text-xs">{`(${total_unique_items})`}</p>
+              <p className="text-xs">{`(${total_items})`}</p>
             </a>
           </Link>
           <Link href="/login">
