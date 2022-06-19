@@ -73,7 +73,9 @@ export default function Navigation() {
           <Link href="/cart">
             <a className="flex">
               <AiOutlineShoppingCart color="rgb(68, 68, 68)" fontSize="1.3em" />
-              <p className="text-xs">{`(${total_items})`}</p>
+              <span class="text-xs inline-block w-4 h-4 text-center mr-2 bg-lighterGreen rounded-full">
+                {total_items}
+              </span>
             </a>
           </Link>
           <Link href="/login">

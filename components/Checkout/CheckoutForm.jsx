@@ -168,22 +168,6 @@ export default function CheckoutForm({ token, loading, paymentID }) {
           }}
         />
       </form>
-      <div>
-        <div className="flex flex-col gap-5 shadow-2xl rounded-2xl p-5 h-highlight min-h-max">
-          {line_items.map((item) => (
-            <CheckoutItems key={item.id} {...item} />
-          ))}
-          <div className="p-3">
-            <hr className="w-full mt-3" />
-            <div className="mt-5 flex items-center justify-between">
-              <h1 className="text-lg tracking-wide">Subtotal</h1>
-              <span className="text-lg font-semibold">
-                {subtotal.formatted_with_symbol}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
