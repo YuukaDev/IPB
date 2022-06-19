@@ -76,6 +76,8 @@ export default function Checkout() {
             });
     }
 
+    console.log(paymentData);
+
     return (
         <div>
             <Navigation />

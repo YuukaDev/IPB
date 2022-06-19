@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import commerce from "../../lib/commerce";
 import useShop from "../../utils/StoreContext";
 import CheckoutItems from "./CheckoutItems";
 import GridLoader from "react-spinners/GridLoader";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 
-export default function CheckoutForm({
-  token,
-  loading,
-  setLoading,
-  paymentID,
-}) {
+export default function CheckoutForm({ token, loading, paymentID }) {
   const { line_items, subtotal } = useShop();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [data, setData] = useState("");
   const [paidFor, setPaidFor] = useState(false);
   const isEmpty = line_items.length === 0;
   const value = token.live?.total.raw;
@@ -27,6 +21,10 @@ export default function CheckoutForm({
 
   if (paidFor) {
     alert("Thank you for your purchase!");
+  }
+
+  if (error) {
+    console.log("error", error);
   }
 
   const handleApprove = (orderID, paymentID) => {
@@ -161,9 +159,7 @@ export default function CheckoutForm({
               ],
             });
           }}
-          onApprove={async (data, action) => {
-            const order = await action.order.capture();
-
+          onApprove={(data, action) => {
             captureCheckout(data?.payerID);
             handleApprove(data.orderID);
           }}
