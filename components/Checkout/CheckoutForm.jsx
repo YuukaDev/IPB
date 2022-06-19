@@ -2,8 +2,8 @@ import { useState } from "react";
 import commerce from "../../lib/commerce";
 import useShop from "../../utils/StoreContext";
 import CheckoutItems from "./CheckoutItems";
-import GridLoader from "react-spinners/GridLoader";
 import { PayPalButtons } from "@paypal/react-paypal-js";
+import Spinner from "../../components/Spinner/Spinner";
 
 export default function CheckoutForm({ token, loading, paymentID }) {
   const { line_items, subtotal } = useShop();
@@ -76,9 +76,7 @@ export default function CheckoutForm({ token, loading, paymentID }) {
   };
 
   if (loading) {
-    return (
-      <GridLoader margin={20} color="#34de01" loading={loading} size={20} />
-    );
+    return <Spinner loading={loading} />;
   }
 
   return (
