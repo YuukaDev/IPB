@@ -17,7 +17,7 @@ export default function Footer() {
               many years. We have a bunch of satisfied customers behind us. The
               orders we sell are exclusively full access and are made by our
               team. If you have a problem with your purchase, please contact our
-              24/7 support
+              24/7 support.
             </p>
           </div>
         </div>
