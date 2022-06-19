@@ -2,7 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["cdn.chec.io"]
+    domains: ["cdn.chec.io"],
+    loader: "akamai",
+    path: ''
   },
   eslint: {
     ignoreDuringBuilds: true
