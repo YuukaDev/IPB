@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Card from "../ProductCard/Card";
 
 export default function TrendingProducts({ products }) {
@@ -13,9 +14,11 @@ export default function TrendingProducts({ products }) {
           ))}
         </div>
         <div>
-          <button className="mt-10 font-normal tracking-widest bg-black uppercase hover:bg-transparent hover:border-solid border border-black text-white hover:text-black py-3 px-5 transition-all">
-            All Games
-          </button>
+          <Link href="/products">
+            <button className="mt-10 font-normal tracking-widest bg-black uppercase hover:bg-transparent hover:border-solid border border-black text-white hover:text-black py-3 px-5 transition-all">
+              All Games
+            </button>
+          </Link>
         </div>
       </div>
     </div>

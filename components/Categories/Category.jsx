@@ -15,7 +15,7 @@ export const Category = () => {
             Action
           </h1>
           <br />
-          <Link href="/">
+          <Link href="/products">
             <button className="font-normal tracking-widest bg-white uppercase hover:bg-transparent hover:border-solid border border-white text-black hover:text-white py-3 px-5 transition-all">
               View Now
             </button>
@@ -28,7 +28,7 @@ export const Category = () => {
             Adventure
           </h1>
           <br />
-          <Link href="/">
+          <Link href="/products">
             <button className="font-normal tracking-widest bg-white uppercase hover:bg-transparent hover:border-solid border border-white text-black hover:text-white py-3 px-5 transition-all">
               View Now
             </button>
@@ -41,7 +41,7 @@ export const Category = () => {
             RPG
           </h1>
           <br />
-          <Link href="/">
+          <Link href="/products">
             <button className="font-normal tracking-widest bg-white uppercase hover:bg-transparent hover:border-solid border border-white text-black hover:text-white py-3 px-5 transition-all">
               View Now
             </button>
@@ -54,7 +54,7 @@ export const Category = () => {
             Horror
           </h1>
           <br />
-          <Link href="/">
+          <Link href="/products">
             <button className="font-normal tracking-widest bg-white uppercase hover:bg-transparent hover:border-solid border border-white text-black hover:text-white py-3 px-5 transition-all">
               View Now
             </button>
@@ -67,7 +67,7 @@ export const Category = () => {
             Indie
           </h1>
           <br />
-          <Link href="/">
+          <Link href="/products">
             <button className="font-normal tracking-widest bg-white uppercase hover:bg-transparent hover:border-solid border border-white text-black hover:text-white py-3 px-5 transition-all">
               View Now
             </button>

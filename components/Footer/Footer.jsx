@@ -75,7 +75,7 @@ export default function Footer() {
                 <FiFacebook />
               </a>
             </Link>
-            <Link href="/" passHref>
+            <Link href="https://www.instagram.com/ip_balkan/" passHref>
               <a className="opacity-70 hover:opacity-100 transition-all group">
                 <FiInstagram />
               </a>
