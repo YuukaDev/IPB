@@ -20,9 +20,11 @@ export default function Footer() {
           </div>
         </div>
         <div>
-          <a href="/products">
-            <h1 className="cursor-pointer uppercase text-sm">Buy</h1>
-          </a>
+          <Link href="/products" passHref>
+            <a>
+              <h1 className="cursor-pointer uppercase text-sm">Buy</h1>
+            </a>
+          </Link>
           <div className="flex tracking-wide text-footerFont flex-col mt-2 gap-footer">
             <Link href="/" passHref>
               <a className="opacity-70 hover:opacity-100 transition-all group">
