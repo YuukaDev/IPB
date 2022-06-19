@@ -9,16 +9,24 @@ import Product from "../../components/ProductOverview/Product";
 import Footer from "../../components/Footer/Footer";
 import SlugCard from "../../components/ProductCard/SlugCard";
 import Spinner from "../../components/Spinner/Spinner";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../lib/firebase";
 
 export default function ProductPage() {
-    const { setCart } = useCartDispatch();
     const router = useRouter();
-
     const { permalink } = router.query;
+    const { setCart } = useCartDispatch();
 
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
-    const addToCart = () => commerce.cart.add(product.id).then(({ cart }) => setCart(cart));
+    const [user] = useAuthState(auth);
+    const addToCart = () => {
+        if (!user) {
+            router.push("/login");
+        } else {
+            commerce.cart.add(product.id).then(({ cart }) => setCart(cart))
+        }
+    }
 
     const fetchProductByPermalink = async (permalink) => {
         try {
