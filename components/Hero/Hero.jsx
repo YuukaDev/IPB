@@ -7,6 +7,7 @@ export default function Hero() {
     <Swiper
       effect="fade"
       grabCursor={true}
+      draggable={true}
       autoplay={{
         autoplay: true,
         delay: 5000,

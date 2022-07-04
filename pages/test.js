@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import PaypalCheckoutButton from "../components/Checkout/PaypalCheckoutButton";
 import useShop from "../utils/StoreContext";
 import commerce from "../lib/commerce";
-import PaypalButton from "../components/Checkout/PaypalButton";
 
 export default function Test() {
     const { cart, line_items } = useShop();
@@ -17,8 +15,6 @@ export default function Test() {
     const [cardNum, setCardNum] = useState("");
     const [cardName, setName] = useState("");
     const [expDate, setExpDate] = useState("");
-    const [cvv, setCvv] = useState("");
-    const [cardType, setCardType] = useState("");
     const [zipCode, setZipCode] = useState("");
 
     useEffect(() => {
@@ -89,7 +85,7 @@ export default function Test() {
                 );
             })
             .catch((error) => {
-                console.log(error);
+                setError(error);
             });
     }
 

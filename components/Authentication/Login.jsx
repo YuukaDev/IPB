@@ -16,8 +16,7 @@ export default function Login() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword, user, error] = useSignInWithEmailAndPassword(auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,10 +30,6 @@ export default function Login() {
   if (error) {
     console.log(error.message);
   }
-
-  const logOut = () => {
-    signOut(auth);
-  };
 
   return (
     <div className="mb-20 h-loginH flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

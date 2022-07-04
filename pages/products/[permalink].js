@@ -20,13 +20,6 @@ export default function ProductPage() {
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [user] = useAuthState(auth);
-    const addToCart = () => {
-        if (!user) {
-            router.push("/login");
-        } else {
-            commerce.cart.add(product.id).then(({ cart }) => setCart(cart))
-        }
-    }
 
     const fetchProductByPermalink = async (permalink) => {
         try {
@@ -37,6 +30,14 @@ export default function ProductPage() {
             setLoading(false);
         }
     };
+
+    const addToCart = () => {
+        if (!user) {
+            router.push("/login");
+        } else {
+            commerce.cart.add(product.id).then(({ cart }) => setCart(cart))
+        }
+    }
 
     useEffect(() => {
         if (!permalink) {
@@ -52,7 +53,6 @@ export default function ProductPage() {
                 <Spinner isLoading={loading} />
             </>
         )
-
     }
 
     return (

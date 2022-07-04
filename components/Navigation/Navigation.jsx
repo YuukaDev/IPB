@@ -22,7 +22,7 @@ export default function Navigation() {
 
   return (
     <nav className="sticky top-0 z-10 bg-navigationBackground">
-      <div className="flex md:justify-between lg:justify-between sm:px-52 md:px-52 lg:px-52 md:p-3 sm:p-3 lg:p-3 items-center font-semibold">
+      <div className="flex md:justify-between lg:justify-between sm:px-52 md:px-52 lg:px-52 md:p-3 sm:p-3 lg:p-3 items-center">
         <div>
           <a className="hidden lg:flex" aria-label="Home" href="/">
             <Image src={logoImage} alt="logo" width="90" height="50" />
@@ -73,9 +73,7 @@ export default function Navigation() {
           <Link href="/cart">
             <a className="flex">
               <AiOutlineShoppingCart color="rgb(68, 68, 68)" fontSize="1.3em" />
-              <span class="text-xs inline-block w-4 h-4 text-center mr-2 bg-lighterGreen rounded-full">
-                {total_items}
-              </span>
+              <p className="text-xs">{`(${total_items})`}</p>
             </a>
           </Link>
           <Link href="/login">
