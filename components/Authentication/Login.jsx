@@ -31,8 +31,8 @@ export default function Login() {
   }
 
   return (
-    <div className="mb-20 h-loginH flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <Image width={300} height={300} src={sonicImage} />
+    <div className="h-loginH flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <Image width={300} height={300} src={pikachuImage} />
       <div className="max-w-md w-full">
         <div>
           <h1 className="mt-6 uppercase tracking-login text-center text-login">

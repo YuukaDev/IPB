@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import db, { auth } from "../../lib/firebase";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useShop from "../../utils/StoreContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import sonicImage from "../../images/sonic.png";
 import { addDoc, collection } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 
@@ -65,7 +63,7 @@ export default function Register() {
   }, []);
 
   return (
-    <div className="mb-20 h-loginH flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="h-loginH flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
         <div>
           <h1 className="mt-6 uppercase tracking-login text-center text-login">
