@@ -54,9 +54,9 @@ module.exports = {
         heroWide: "3px"
       },
       backgroundImage: {
-        'hero-1': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/forza_5.jpg')",
-        'hero-2': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/nba.jpg')",
-        'hero-3': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/hollow.jpg')",
+        'hero-1': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/forzaHorizon.jpg')",
+        'hero-2': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/RiskOfRain.jpg')",
+        'hero-3': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/Hollow-Knight.jpg')",
         'highlight-section': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/dead-cells.jpg')",
         'category-1': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pcmag.com/imagery/roundups/04rB8kbcrHGgvsWGkGWWS2m-3..v1637158780.jpg')",
         'category-2': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pinimg.com/originals/8e/45/ce/8e45ce477f3349ea31fba600dd8cd139.jpg')",

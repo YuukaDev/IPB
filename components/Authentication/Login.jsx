@@ -4,19 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import sonicImage from "../../images/sonic.png";
+import pikachuImage from "../../images/pikachuImage.png";
 
 import { auth } from "../../lib/firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { signOut } from "firebase/auth";
-import Profile from "./Profile";
 
 export default function Login() {
   const router = useRouter();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const [signInWithEmailAndPassword, user, error] = useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword, user, error] =
+    useSignInWithEmailAndPassword(auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
