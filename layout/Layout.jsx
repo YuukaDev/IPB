@@ -3,8 +3,9 @@ import Hero from "../components/Hero/Hero";
 import FeaturedSection from "../components/FeaturedSection/FeaturedSection";
 import Highlight from "../components/Highlight/Highlight";
 import About from "../components/About/About";
-import { Category } from "../components/Categories/Category";
 import Footer from "../components/Footer/Footer";
+
+import { Category } from "../components/Categories/Category";
 
 export const Layout = ({ products }) => {
   return (
