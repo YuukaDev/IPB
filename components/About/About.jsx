@@ -44,8 +44,8 @@ export default function About() {
               />
               <h1 className="text-aboutUs mt-5 mb-1">Super Fast</h1>
               <p className="text-aboutParagraph text-center">
-                Xquisite is very simple and easy to use and is also very fast
-                and functional
+                We are one of the most fastest providing gaming services in the
+                world
               </p>
             </div>
             <div className="flex flex-col justify-center items-center">
@@ -59,8 +59,8 @@ export default function About() {
               />
               <h1 className="text-aboutUs mt-5 mb-1">Reliable & Safe</h1>
               <p className="text-aboutParagraph text-center">
-                Xquisite is very simple and easy to use and is also very fast
-                and functional
+                We are an eCommerce website that provides the most reliable and
+                safest
               </p>
             </div>
             <div className="flex flex-col justify-center items-center">
@@ -74,8 +74,7 @@ export default function About() {
               />
               <h1 className="text-aboutUs mt-4 mb-1">Support</h1>
               <p className="text-aboutParagraph text-center">
-                Xquisite is very simple and easy to use and is also very fast
-                and functional
+                We provide very fast support and instant responses from our team
               </p>
             </div>
           </div>

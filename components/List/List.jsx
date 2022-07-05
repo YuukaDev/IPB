@@ -6,18 +6,19 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const List = ({
-  isLoading,
-  category,
-  selected,
-  setSelected,
-  sorted,
-  setSorted,
-  handleChange,
-  onChange,
-}) => {
+const List = (props) => {
+  const {
+    isLoading,
+    category,
+    selected,
+    setSelected,
+    sorted,
+    setSorted,
+    handleChange,
+    onChange,
+  } = props;
   return (
-    <>
+    <Fragment>
       <div className="w-52">
         <Listbox disabled={isLoading} value={selected} onChange={setSelected}>
           <>
@@ -82,9 +83,6 @@ const List = ({
           </>
         </Listbox>
       </div>
-
-      {/* Drugi
-
       <div className="w-52">
         <div className="mt-1">
           <form autoComplete="off" onSubmit={handleChange}>
@@ -97,11 +95,6 @@ const List = ({
           </form>
         </div>
       </div>
-      
-      */}
-
-      {/* Treći*/}
-
       <div className="w-52">
         <Listbox value={sorted} onChange={setSorted}>
           <>
@@ -148,7 +141,7 @@ const List = ({
           </>
         </Listbox>
       </div>
-    </>
+    </Fragment>
   );
 };
 

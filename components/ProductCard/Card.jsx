@@ -12,16 +12,18 @@ const Card = ({ product }) => {
         whileTap={{ scale: 0.9 }}
       >
         <Link href={`/products/${product.permalink}`} passHref>
-          <div className="w-96 cursor-pointer">
-            <Image
-              className="rounded-md"
-              loading="lazy"
-              width="500"
-              height="250"
-              src={product.image.url}
-              alt={product.name}
-            />
-          </div>
+          <a href={`/products/${product.permalink}`}>
+            <div className="w-96 cursor-pointer">
+              <Image
+                className="rounded-md"
+                loading="lazy"
+                width="500"
+                height="250"
+                src={product.image.url}
+                alt={product.name}
+              />
+            </div>
+          </a>
         </Link>
       </motion.div>
       <div className="flex justify-between mt-3">

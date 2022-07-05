@@ -95,8 +95,7 @@ export default function CheckoutForm({ token, loading }) {
         router.push("/");
       })
       .catch((error) => {
-        setError(error.message);
-        console.log(error);
+        setError("There was an error during this checkout!");
       });
   }
 
@@ -114,7 +113,7 @@ export default function CheckoutForm({ token, loading }) {
   }
 
   if (error) {
-    return alert(error.message);
+    return alert(error);
   }
 
   return (

@@ -27,6 +27,16 @@ export default function Example({ category }) {
     const [isLoading, setLoading] = useState(false);
     const recipesInput = "recipesInput";
 
+    const listData = {
+        onChange: (e) => setSearched(e.target.value),
+        recipesInput,
+        sorted,
+        setSorted,
+        selected,
+        setSelected,
+        category,
+    }
+
     const handleFilter = async () => {
         try {
             if (selected) {
@@ -44,10 +54,6 @@ export default function Example({ category }) {
             setLoading(false);
             console.log(err.message);
         }
-    }
-
-    const onChange = (e) => {
-        setSearched(e.target.value);
     }
 
     useEffect(() => {
@@ -82,7 +88,7 @@ export default function Example({ category }) {
         <>
             <Navigation />
             <div className="mt-16 flex justify-center items-center gap-5">
-                <List onChange={onChange} recipesInput={recipesInput} sorted={sorted} setSorted={setSorted} selected={selected} setSelected={setSelected} category={category} />
+                <List {...listData} />
             </div>
             <div className="text-navigationColor text-center">
                 {isLoading ? <Loader /> : renderedCard}
@@ -90,3 +96,4 @@ export default function Example({ category }) {
         </>
     )
 }
+

@@ -18,7 +18,7 @@ export default function Hero() {
         type: "bullets",
       }}
       modules={[Pagination, Autoplay, EffectFade]}
-      className="mySwiper"
+      className="mySwiper h-full md:w-full md:p-0 md:m-0"
     >
       <SwiperSlide>
         <div className="bg-hero-1 w-full h-landingHero bg-no-repeat bg-cover bg-bottom text-heroColor">

@@ -27,7 +27,7 @@ export default function ProductPage() {
             setProduct(product);
             setLoading(false);
         } catch (error) {
-            setLoading(false);
+            setLoading(true);
         }
     };
 
@@ -40,10 +40,11 @@ export default function ProductPage() {
     }
 
     useEffect(() => {
-        if (!permalink) {
-            return;
+        if (permalink) {
+            fetchProductByPermalink(permalink);
+        } else {
+            router.reload();
         }
-        fetchProductByPermalink(permalink);
     }, [permalink]);
 
     if (loading) {

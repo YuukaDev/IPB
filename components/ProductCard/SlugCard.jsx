@@ -13,16 +13,18 @@ export default function SlugCard({ productItem }) {
           whileTap={{ scale: 0.9 }}
         >
           <Link href={`/products/${productItem.permalink}`} passHref>
-            <div className="w-permalinkCard cursor-pointer">
-              <Image
-                className="rounded-md"
-                loading="lazy"
-                width="350"
-                height="200"
-                src={productItem.image.url}
-                alt={productItem.name}
-              />
-            </div>
+            <a href={`/products/${productItem.permalink}`}>
+              <div className="w-permalinkCard cursor-pointer">
+                <Image
+                  className="rounded-md"
+                  loading="lazy"
+                  width="350"
+                  height="200"
+                  src={productItem.image.url}
+                  alt={productItem.name}
+                />
+              </div>
+            </a>
           </Link>
         </motion.div>
         <div className="flex justify-between mt-3">

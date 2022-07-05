@@ -4,7 +4,7 @@ export default function Highlight() {
   return (
     <div
       id="newest"
-      className="bg-highlight-section w-full h-highlight bg-no-repeat bg-cover bg-center text-heroColor"
+      className="md:w-full sm:w-full bg-highlight-section w-full h-highlight bg-no-repeat bg-cover bg-center text-heroColor"
     >
       <div className="h-hero flex justify-center items-start w-highlight m-auto flex-col">
         <p className="text-md uppercase font-medium height leading-5 tracking-heroWide">

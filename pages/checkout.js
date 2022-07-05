@@ -34,10 +34,10 @@ export default function Checkout() {
     return (
         <div>
             <Navigation />
-            <CheckoutForm setLoading={setLoading} loading={loading} token={token} />
+            <div className="h-highlight mb-32">
+                <CheckoutForm setLoading={setLoading} loading={loading} token={token} />
+            </div>
             <Footer />
         </div>
     )
 }
-
-//<button onClick={captureToken}>Click</button>

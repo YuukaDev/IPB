@@ -7,7 +7,7 @@ export default function Footer() {
     <>
       <div
         id="footer"
-        className="flex text-navigationColor p-footer justify-center items-center gap-64"
+        className="flex text-navigationColor p-footer justify-center items-center lg:gap-64"
       >
         <div>
           <h1 className="uppercase tracking-widest text-sm">About Us</h1>
