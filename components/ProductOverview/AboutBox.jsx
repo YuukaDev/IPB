@@ -5,7 +5,7 @@ export const AboutBox = ({ product }) => {
   let [isOpen, setIsOpen] = useState(false);
   const [imgUrl, setImgUrl] = useState([]);
 
-  function closeModal(e) {
+  function closeModal() {
     setIsOpen(false);
   }
 

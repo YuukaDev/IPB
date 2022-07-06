@@ -23,6 +23,7 @@ export default function ProductPage() {
 
     const fetchProductByPermalink = async (permalink) => {
         try {
+            setLoading(true);
             const product = await commerce.products.retrieve(permalink, { type: 'permalink ' });
             setProduct(product);
             setLoading(false);
@@ -40,11 +41,10 @@ export default function ProductPage() {
     }
 
     useEffect(() => {
-        if (permalink) {
-            fetchProductByPermalink(permalink);
-        } else {
-            router.reload();
+        if (!permalink) {
+            return;
         }
+        fetchProductByPermalink(permalink);
     }, [permalink]);
 
     if (loading) {
