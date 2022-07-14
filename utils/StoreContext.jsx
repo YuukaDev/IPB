@@ -1,5 +1,5 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
-import shopReducer, { initialState } from "./shopReducer";
+import shopReducer, { initialState } from "./ShopReducer";
 import commerce from "../lib/commerce";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import db, { auth } from "../lib/firebase";
