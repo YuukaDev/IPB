@@ -60,7 +60,7 @@ export default function ProductPage() {
         <>
             <Navigation />
             <Product addToCart={addToCart} product={product} />
-            <div className="mt-5 mb-14 flex gap-5 justify-center items-center text-center">
+            <div className="mt-5 mb-14 flex flex-col lg:flex-row gap-5 justify-center items-center text-center">
                 {product.related_products.map((productItem) => (
                     <SlugCard key={productItem.id} productItem={productItem} />
                 ))}

@@ -155,7 +155,7 @@ export default function Navigation() {
                   <p>Home</p>
                 </a>
               </Link>
-              <Link href="/">
+              <Link href="/products">
                 <a
                   href="#"
                   className="block px-3 py-2 rounded-md text-base font-medium"
@@ -164,7 +164,7 @@ export default function Navigation() {
                 </a>
               </Link>
 
-              <Link href="/">
+              <Link href="/#hottest">
                 <a
                   href="#"
                   className="block px-3 py-2 rounded-md text-base font-medium"
@@ -172,7 +172,7 @@ export default function Navigation() {
                   <p>Hottest</p>
                 </a>
               </Link>
-              <Link href="/">
+              <Link href="/#newest">
                 <a
                   href="#"
                   className="block px-3 py-2 rounded-md text-base font-medium"
@@ -180,7 +180,7 @@ export default function Navigation() {
                   <p>Newest</p>
                 </a>
               </Link>
-              <Link href="/">
+              <Link href="/#footer">
                 <a
                   href="#"
                   className="block px-3 py-2 rounded-md text-base font-medium"
@@ -188,7 +188,7 @@ export default function Navigation() {
                   <p>About Us</p>
                 </a>
               </Link>
-              <Link href="/">
+              <Link href="/#footer">
                 <a
                   href="#"
                   className="block px-3 py-2 rounded-md text-base font-medium"

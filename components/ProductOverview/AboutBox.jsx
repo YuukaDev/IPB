@@ -17,12 +17,17 @@ export const AboutBox = ({ product }) => {
   return (
     <div className="w-2/4">
       <div className="mt-16">
-        <h1 className="uppercase tracking-widest text-lg mb-3">Visuals</h1>
+        <h1 className="uppercase hidden lg:block tracking-widest text-lg mb-3">
+          Visuals
+        </h1>
         <div>
-          <video className="w-video rounded-2xl" controls={true}>
+          <video
+            className="w-video hidden lg:block rounded-2xl"
+            controls={true}
+          >
             <source alt={product.name} src={product.assets[5].url} />
           </video>
-          <div className="w-visualImage select-none flex gap-3 mt-5">
+          <div className="w-visualImage hidden lg:flex select-none gap-3 mt-5">
             <img
               alt={product.name}
               onClick={openModal}
