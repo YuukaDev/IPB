@@ -18,6 +18,7 @@ export async function getStaticProps() {
     }
 }
 
+
 export default function Example({ category }) {
     const { products } = useShop();
     const [selected, setSelected] = useState(category);
