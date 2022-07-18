@@ -36,6 +36,7 @@ export const ShopProvider = ({ children }) => {
       return console.log(err.message);
     }
   };
+  
 
   const getCart = async () => {
     try {
