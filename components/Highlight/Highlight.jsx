@@ -11,7 +11,7 @@ export default function Highlight() {
           Newest
         </p>
         <h1 className="mt-5 text-3xl tracking-heroWide leading-7 font-normal">
-          Dying Light 2 Stay Human
+          Valheim
         </h1>
         <div className="mt-6">
           <Link href="/">

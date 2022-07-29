@@ -2,16 +2,18 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 import commerce from "../../lib/commerce";
+
 import useShop, { useCartDispatch } from "../../utils/StoreContext";
 import Spinner from "../../components/Spinner/Spinner";
 import CheckoutData from "./CheckoutData";
 
+import { ToastContainer, toast } from "react-toastify";
+
 export default function CheckoutForm({ token, loading }) {
+  const router = useRouter();
   const { line_items } = useShop();
   const { setCart } = useCartDispatch();
-
   const [error, setError] = useState("");
-  const router = useRouter();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -95,7 +97,15 @@ export default function CheckoutForm({ token, loading }) {
         router.push("/");
       })
       .catch((error) => {
-        setError("There was an error during this checkout!");
+        toast.error("There was an error durring your payment!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   }
 
@@ -110,10 +120,6 @@ export default function CheckoutForm({ token, loading }) {
 
   if (loading) {
     return <Spinner loading={loading} />;
-  }
-
-  if (error) {
-    return alert(error);
   }
 
   return (

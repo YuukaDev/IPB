@@ -55,9 +55,9 @@ module.exports = {
       },
       backgroundImage: {
         'hero-1': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/forzaHorizon.jpg')",
-        'hero-2': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/RiskOfRain.jpg')",
-        'hero-3': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/Hollow-Knight.jpg')",
-        'highlight-section': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/dead-cells.jpg')",
+        'hero-2': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/dead-cells.jpg')",
+        'hero-3': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/elden-ring.jpg')",
+        'highlight-section': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/valheim.jpg')",
         'category-1': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pcmag.com/imagery/roundups/04rB8kbcrHGgvsWGkGWWS2m-3..v1637158780.jpg')",
         'category-2': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://i.pinimg.com/originals/8e/45/ce/8e45ce477f3349ea31fba600dd8cd139.jpg')",
         'category-3': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://www.pcgamesn.com/wp-content/uploads/2020/06/TheWitcher3.jpg')",

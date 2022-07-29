@@ -1,5 +1,4 @@
 import { ShopProvider } from "../utils/StoreContext";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import "../styles/style.css";
 import "swiper/css";
@@ -7,15 +6,25 @@ import "swiper/css/bundle";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 function MyApp({ Component, pageProps }) {
-  const payPalKey = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID;
   return (
-    <PayPalScriptProvider options={{ "client-id": payPalKey }}>
-      <ShopProvider>
-        <Component {...pageProps} />
-      </ShopProvider>
-    </PayPalScriptProvider>
+    <ShopProvider>
+      <Component {...pageProps} />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </ShopProvider>
   )
 }
 

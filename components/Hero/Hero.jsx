@@ -30,7 +30,7 @@ export default function Hero() {
               Forza Horizon 5
             </h1>
             <div className="mt-6">
-              <Link passHref href="/">
+              <Link passHref href="/products/forza-horizon-5">
                 <button className="font-normal tracking-widest bg-transparent uppercase hover:bg-white text-white hover:text-black py-3 px-5 border border-white transition-all">
                   Shop Now
                 </button>
@@ -46,10 +46,10 @@ export default function Hero() {
               New Trending
             </p>
             <h1 className="mt-5 text-3xl tracking-heroWide leading-7 font-normal">
-              Risk of Rain 2: Survivors of the Void
+              Dead Cells - The Queen and the Sea
             </h1>
             <div className="mt-6">
-              <Link href="/">
+              <Link href="/products/dead-cells">
                 <button className="font-normal tracking-widest bg-transparent uppercase hover:bg-white text-white hover:text-black py-3 px-5 border border-white transition-all">
                   Shop Now
                 </button>
@@ -65,10 +65,10 @@ export default function Hero() {
               New Trending
             </p>
             <h1 className="mt-5 text-3xl tracking-heroWide leading-7 font-normal">
-              Hollow Knight
+              Elden Ring
             </h1>
             <div className="mt-6">
-              <Link href="/">
+              <Link href="/products/elden-ring">
                 <button className="font-normal tracking-widest bg-transparent uppercase hover:bg-white text-white hover:text-black py-3 px-5 border border-white transition-all">
                   Shop Now
                 </button>
