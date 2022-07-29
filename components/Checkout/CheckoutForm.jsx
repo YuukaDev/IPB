@@ -6,14 +6,15 @@ import commerce from "../../lib/commerce";
 import useShop, { useCartDispatch } from "../../utils/StoreContext";
 import Spinner from "../../components/Spinner/Spinner";
 import CheckoutData from "./CheckoutData";
+import Navigation from "../Navigation/Navigation";
 
 import { ToastContainer, toast } from "react-toastify";
+import Empty from "../Empty/Empty";
 
 export default function CheckoutForm({ token, loading }) {
   const router = useRouter();
   const { line_items } = useShop();
   const { setCart } = useCartDispatch();
-  const [error, setError] = useState("");
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -121,10 +122,6 @@ export default function CheckoutForm({ token, loading }) {
     e.preventDefault();
     submitCheckout();
   };
-
-  if (isEmpty) {
-    return <div className="h-screen">Your cart is empty go shop!</div>;
-  }
 
   if (loading) {
     return <Spinner loading={loading} />;

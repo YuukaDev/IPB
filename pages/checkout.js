@@ -5,11 +5,13 @@ import Navigation from "../components/Navigation/Navigation";
 import CheckoutForm from "../components/Checkout/CheckoutForm";
 import useShop from "../utils/StoreContext";
 import Footer from "../components/Footer/Footer";
+import Empty from "../components/Empty/Empty";
 
 export default function Checkout() {
-    const { cart } = useShop();
+    const { cart, line_items } = useShop();
     const [token, setToken] = useState([]);
     const [loading, setLoading] = useState(true);
+    const isEmpty = line_items.length === 0;
 
     useEffect(() => {
         if (cart.id) {
@@ -30,6 +32,10 @@ export default function Checkout() {
             generateToken();
         }
     }, [cart]);
+
+    if (isEmpty) {
+        return <Empty />;
+    }
 
     return (
         <div>
