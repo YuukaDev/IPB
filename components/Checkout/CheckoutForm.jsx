@@ -91,7 +91,15 @@ export default function CheckoutForm({ token, loading }) {
         },
       })
       .then((response) => {
-        alert("Great, your checkout was captured successfully!");
+        toast.success("Great, your checkout was captured successfully!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         const cart = commerce.cart.delete();
         setCart(cart);
         router.push("/");
