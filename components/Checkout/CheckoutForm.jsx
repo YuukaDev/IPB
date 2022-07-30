@@ -8,8 +8,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import CheckoutData from "./CheckoutData";
 import Navigation from "../Navigation/Navigation";
 
-import { ToastContainer, toast } from "react-toastify";
-import Empty from "../Empty/Empty";
+import { toast } from "react-toastify";
 
 export default function CheckoutForm({ token, loading }) {
   const router = useRouter();

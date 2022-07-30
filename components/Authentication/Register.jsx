@@ -1,24 +1,23 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import db, { auth } from "../../lib/firebase";
 
 import Link from "next/link";
-import { useRouter } from "next/router";
-import useShop from "../../utils/StoreContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { addDoc, collection } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 
+import { toast } from "react-toastify";
+
 export default function Register() {
-  const router = useRouter();
-  const { customer } = useShop();
   const schema = yup.object({
     name: yup.string().required(),
     email: yup.string().required(),
     password: yup.string().min(8).max(32).required(),
   });
+
   const {
     register,
     handleSubmit,
@@ -26,6 +25,7 @@ export default function Register() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
   const [displayName, setName] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -46,8 +46,25 @@ export default function Register() {
         registerEmail,
       });
       setLoading(false);
+      toast.success("Great, your account was registered successfully!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (err) {
-      console.log(err);
+      toast.error("Oh no, there was an error!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       setLoading(true);
     }
   };
@@ -55,12 +72,6 @@ export default function Register() {
   const handleSubmitForm = () => {
     registerUser(registerEmail, registerPassword);
   };
-
-  useEffect(() => {
-    if (customer.name) {
-      router.push("/");
-    }
-  }, []);
 
   return (
     <div className="h-loginH flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
